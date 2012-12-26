@@ -1,0 +1,8 @@
+id: "ld_stable"
+territory: "Город Likedimion"
+name: "Возле конюшен"
+info: "Вы стоите перед воротами городских конюшен"
+territory: 1 #0|1
+doors:
+    - ["к банку", ld_bank_main, s]
+    - ["к северным воротам", ld_bank_inverse, w]

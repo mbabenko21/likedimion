@@ -1,0 +1,7 @@
+id: "ld_jobavenu_tavbs"
+territory: "Город"
+name: "Убарной стойки"
+info: "Перед вами бармен, он разливает напитки"
+territory: 1 #0|1
+doors:
+    - ["к выходу", "ld_jobavenu_tav", "s"]

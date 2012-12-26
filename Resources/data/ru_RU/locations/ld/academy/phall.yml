@@ -1,0 +1,7 @@
+id: "ld_academy_phall"
+territory: "Город Likedimion"
+name: "Парадный зал"
+info: "Вы находитесь в парадном зале академии. Здесь проводятся всяческие цермонии."
+territory: 1 #0|1
+doors:
+    - ["выйти в холл", ld_academy_hall, s]

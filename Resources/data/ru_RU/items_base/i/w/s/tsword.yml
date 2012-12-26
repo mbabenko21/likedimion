@@ -1,0 +1,23 @@
+#Generate base item tsword
+name:
+    s: деревянный меч
+    p: деревянные мечи
+look: Обыкновенный меч
+cost: 10
+params:
+    min_damage: 3
+    max_damade: 5
+    speed: 3
+    armor:
+    bias:
+    parring:
+needs:
+    class:
+    level:
+    strenge:
+    dexterity:
+    intelligence:
+jaks:
+bonuses:
+  life:
+  energy:

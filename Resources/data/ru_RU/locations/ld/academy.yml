@@ -1,0 +1,10 @@
+id: "ld_academy"
+territory: "Город Likedimoin"
+name: "Возле академии магии"
+info: "Славная академия магии города. Отсюда вышли великие маги"
+territory: 1 #0|1
+doors:
+    - ["к дому лекаря", ld_healer, "s"]
+    - ["войти в академию", ld_academy_hall, "n"]
+    - ["на площадь", ld_cpl, "w"]
+    - ["к банку", "ld_bank_main", "nw"]

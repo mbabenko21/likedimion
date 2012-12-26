@@ -1,0 +1,13 @@
+id: ld_begin
+part: 'Город Likedimion'
+name: Начало
+info: 'Вы стоите на мощенной камнем дороге, севернее вас находится домик лекаря, академия. На юге распологается городской пищевой склад'
+territory: 1
+doors:
+    - ['на север', ld_healer, "n"]
+    - ['на юг', ld_sklad, "s"]
+npc:
+  privratnik:
+    npc: "privratnik"
+    respawn: [100, 300]
+    move: [0, 100, 300]

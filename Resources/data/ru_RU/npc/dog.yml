@@ -1,0 +1,28 @@
+name: "собака"
+type: "animal" #man|animal|crim
+dialog: ""
+char_params: []
+equip:
+  left_hand:
+  right_hand:
+  head:
+  body:
+  hand:
+  leg:
+  cloak:
+  gloves:
+  shoes:
+  bras:
+  amulet:
+base_params:
+  strenge: 2
+  dexterity: 5
+  intelligence: 
+  life: 1
+  energy: 1
+  regeneration: 3
+  meditation: 3
+war_skills:
+  dogfight: 2
+war_params: []
+free_move_steps: 2

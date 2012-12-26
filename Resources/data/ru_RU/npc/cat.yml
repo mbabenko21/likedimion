@@ -1,0 +1,27 @@
+name: "кошка"
+type: "animal" #man|animal|crim
+dialog: ""
+char_params: []
+equip:
+  left_hand:
+  right_hand:
+  head:
+  body:
+  hand:
+  leg:
+  cloak:
+  gloves:
+  shoes:
+  bras:
+  amulet:
+base_params:
+  strenge: 3
+  dexterity: 5
+  intelligence: 2
+  life: 2
+  energy: 2
+  regeneration: 2
+  meditation: 2
+war_skills:
+  dogfight: 3
+war_params: []

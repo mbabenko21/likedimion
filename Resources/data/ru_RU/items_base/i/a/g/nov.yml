@@ -1,0 +1,29 @@
+#Generate base item nov 
+name:
+    s: перчатки
+    p: перчатки
+look: Перчатки без пальцев
+cost: 5
+#Armors head|hand|body|leg|glov|shoes
+#Weapons sword|knife|axe|hummer|staff|bow|crossbow
+type: gloves
+params:
+    min_damage: 
+    max_damade: 
+    speed: 
+    armor_from_crushing:
+    armor_from_cutting: 1
+    armor_from_pricking:
+    armor_from_magic:
+    bias:
+    parring:
+needs:
+    class:
+    level:
+    strenge:
+    dexterity:
+    intelligence:
+jaks:
+bonuses:
+  life:
+  energy:

@@ -1,0 +1,25 @@
+#Generate base item nov 
+name:
+    s: нож новобраца
+    p: ножи новобраца
+attack_name: ножом
+look: Обыкновенный ножик, не очень-то и острый
+cost: 1
+type: knife
+params:
+    min_damage: 1
+    max_damage: 2
+    speed: 1 #базовая скорость атаки + скорость атаки оружия
+    armor:
+    bias:
+    parring:
+needs:
+    class:
+    level:
+    strenge:
+    dexterity:
+    intelligence:
+jaks:
+bonuses:
+  life:
+  energy:

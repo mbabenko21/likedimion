@@ -1,0 +1,9 @@
+entity_paths: ["$ROOT/MB/Glor"]
+proxy: "$ROOT/Resources/proxy/doctrine"
+dev_mode: false
+database_params:
+  driver: "pdo_mysql"
+  user: "root"
+  password: ""
+  dbname: "glor"
+table_prefix: ""

@@ -1,0 +1,16 @@
+#Пример диалога
+start:
+  npc: "Приветствую тебя, %name% {php}return rand(0,100);{/php}"
+  answers:
+    one:
+      reply: "Ну привет, привет {php}if(rand(0,100) > 50) return \"Неудачник\"; else return \"Мужественный воин\";{/php}"
+      section: "start"
+    two:
+      reply: "Ну пока, пока"
+      section: "end"
+end:
+  npc: "Буду нужен - обращайся!"
+  answers:
+    0:
+      reply: "Конец"
+      section: end

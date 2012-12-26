@@ -1,0 +1,7 @@
+id: "ld_academy_floor2"
+territory: "Город Likedimion"
+name: "2 Этаж"
+info: "Вы на втором этаже академии, здесь довольно светло, в центре стоит огромный телескоп"
+territory: 1 #0|1
+doors:
+    - ["спуститься", ld_academy, s]

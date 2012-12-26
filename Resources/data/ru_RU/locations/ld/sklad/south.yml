@@ -1,0 +1,7 @@
+id: "ld_sklad_south"
+territory: "Город"
+name: "Южная часть склада"
+info: "Здесь стало совсем уж темно"
+territory: 0 #0|1
+doors:
+    - ["в северную часть склада", "ld_sklad_start", "n"]

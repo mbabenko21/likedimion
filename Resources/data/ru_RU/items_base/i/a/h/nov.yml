@@ -1,0 +1,27 @@
+#Generate base item nov 
+name:
+    s: шапка новобранца
+    p: шапки новобранцев
+look: Обыкновенная шапка ушанка
+cost: 10
+type: head
+params:
+    min_damage: 
+    max_damade: 
+    speed: 
+    armor_from_crushing: 1
+    armor_from_cutting:
+    armor_from_pricking: 1
+    armor_from_magic:
+    bias:
+    parring:
+needs:
+    class:
+    level:
+    strenge:
+    dexterity:
+    intelligence:
+jaks:
+bonuses:
+  life:
+  energy:

@@ -1,0 +1,9 @@
+id: "ld_academy_hall"
+territory: "Город Likedimion"
+name: "Академия"
+info: "Вы находитесь в главном дворе академии магии"
+territory: 1 #0|1
+doors:
+    - ["выйти на улицу", ld_academy, s]
+    - ["в парадный зал", ld_academy_phall, n]
+    - ["на второй этаж", ld_academy_floor2, n]

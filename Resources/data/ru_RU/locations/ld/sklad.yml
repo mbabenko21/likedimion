@@ -1,0 +1,9 @@
+id: "ld_sklad"
+territory: "Город Likedimion"
+name: "Возле склада"
+info: "Вы находитесь возле городского пищевого склада. Говорят, там водятся большие крысы"
+territory: 1#0|1
+doors:
+    - ["на север", ld_begin, "n"]
+    - ["войти в склад", ld_sklad_start, se]
+    - ["к южным воротам", ld_southgate, w]

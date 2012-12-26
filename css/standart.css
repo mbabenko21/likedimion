@@ -1,0 +1,637 @@
+@import "/css/icons.css";
+body {
+    background-color: #E1E8FB;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+}
+
+.d {
+    border-color: #534030;
+    border-style: solid;
+    border-width: 1px;
+
+    background: url("/images/cprts_lvl1_bg_01.gif");
+    color: #EEDD8A;
+    padding: 4px;
+    vertical-align: top;
+    margin: 2px;
+}
+
+.d a {
+    color: #eeae6d;
+}
+
+.d a:hover {
+    font-weight: bold;
+}
+
+a {
+    color: #362a0a;
+    font-weight: normal;
+    text-decoration: none
+}
+
+.f {
+    background: rgba(222, 184, 135, 0.42);
+    background-position: center;
+    background-size: 110%;
+    padding: 3px;
+    text-align: left;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.wrapper {
+    font-size: 14px;
+}
+
+input {
+    background: url("/images/bg_center_content.png");
+    border: 2px solid #362a0a;
+    background-position: center;
+    background-size: 110%;
+    font-weight: bold;
+}
+
+a:hover {
+    font-weight: bold
+}
+
+.red {
+    color: #d2691e;
+    font-weight: bold;
+}
+
+.radio_buttons label {
+    display: block;
+    cursor: pointer;
+}
+
+.radio_buttons label#light {
+    color: #deb887;
+    font-weight: bold;
+}
+
+.radio_buttons label#dark {
+    color: #444;
+    font-weight: bold;
+}
+
+span.antibot input {
+    width: 30px;
+}
+
+span.antibot strong {
+    color: #333335;
+}
+
+.errors ul {
+    color: #8b0000;
+    font-size: 12px;
+    list-style: none;
+    margin-left: -40px;
+}
+
+.last_news {
+    padding-bottom: 10px;
+}
+
+ul.menu {
+    list-style: none;
+    font-size: 12px;
+    padding-bottom: 5px;
+}
+
+ul.menu li {
+    display: inline-block;
+    padding-right: 20px;
+}
+
+ul.menu li a {
+    color: rgba(51, 31, 1, 0.83);
+    height: 20px;
+}
+
+ul.menu li a:hover {
+    color: rgba(51, 31, 1, 0.83);
+    background: #deb887;
+}
+
+.life {
+    color: rgba(246, 26, 0, 0.69);
+}
+
+.energy {
+    color: rgba(1, 113, 178, 0.79);
+}
+
+.expir {
+    color: rgba(51, 31, 1, 0.83);
+}
+
+.counter__red {
+    background-color: rgba(255, 0, 0, 0.63);
+    border: 2px solid rgba(255, 0, 0, 0.63);
+    border-radius: 10px;
+    color: white;
+}
+
+.counter__blue {
+    background-color: rgba(1, 113, 178, 0.62);
+    border: 2px solid rgba(1, 113, 178, 0.62);
+    border-radius: 10px;
+    color: white;
+}
+
+.counter__brown {
+    background-color: #be9d73;
+    border: 2px solid #be9d73;
+    border-radius: 10px;
+    color: black;
+}
+
+/** dark */
+.char-race__dw__16, .char-race__dh__16, .char-race__ds__16 {
+    background: url("/images/icons/dark.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 20%;
+    display: inline;
+    padding-left: 20px;
+    height: 35px;
+}
+
+/** light */
+.char-race__lw__16, .char-race__lh__16, .char-race__ls__16 {
+    background: url("/images/icons/light.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 20%;
+    display: inline;
+    padding-left: 20px;
+    height: 35px;
+}
+
+/* воин */
+.char-class__dw__16, .char-class__lw__16 {
+    background: url("/images/icons/warrior.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 25%;
+    display: inline;
+    padding-left: 20px;
+    height: 40px;
+}
+
+/* маг */
+.char-class__dh__16, .char-class__lh__16 {
+    background: url("/images/icons/mage.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 25%;
+    display: inline;
+    padding-left: 20px;
+    height: 40px;
+}
+
+/* лучник */
+.char-class__ds__16, .char-class__ls__16 {
+    background: url("/images/icons/sniper.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 25%;
+    display: inline;
+    padding-left: 20px;
+    height: 40px;
+}
+
+.skill__life__16 {
+    background: url("/images/icons/skill_life.ico");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 14%;
+    display: inline;
+    padding-left: 20px;
+    height: 40px;
+}
+
+.skill__energy__16 {
+    background: url("/images/icons/skill_energy.ico");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 15%;
+    display: inline;
+    padding-left: 20px;
+    height: 40px;
+}
+
+.skill__str__16 {
+    background: url("/images/icons/skill_str.ico");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 25%;
+    display: inline;
+    padding-left: 20px;
+    height: 40px;
+}
+
+.skill__dex__16 {
+    background: url("/images/icons/skill_dexterity.ico");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 15%;
+    display: inline;
+    padding-left: 20px;
+    height: 40px;
+}
+
+.skill__int__16 {
+    background: url("/images/icons/skill_int.ico");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 15%;
+    display: inline;
+    padding-left: 20px;
+    height: 40px;
+}
+
+.skills_content {
+    width: 350px;
+    text-align: left;
+}
+
+.skills_content span {
+    text-decoration: underline;
+}
+
+.study-points {
+    font-size: 12px;
+}
+
+ul.armor {
+    font-size: 12px;
+    margin-top: -3px;
+    padding-bottom: -3px;
+    list-style: circle;
+}
+
+.item-list {
+    list-style: none;
+    text-align: left;
+    width: 350px;
+    margin-left: 30%;
+}
+
+span.counter {
+    text-align: right;
+}
+
+.item-list li {
+    padding-bottom: 10px;
+}
+
+.b-arrows {
+    position: absolute;
+    background: url("/images/set-arrows.png") 0 0 no-repeat;
+    display: block;
+    margin-left: -24px;
+}
+
+        .b-icon__up_1 {
+            height: 16px;
+            background-position: 0px 0px;
+            width: 16px;
+        }
+
+            .b-icon__up_1:hover {
+                background-position: 0px -16px;
+            }
+
+        .b-icon__up_2 {
+            height: 16px;
+            background-position: -32px 0px;
+            width: 16px;
+        }
+
+            .b-icon__up_2:hover {
+                background-position: -32px -16px;
+            }
+        .b-icon__up_3 {
+            height: 16px;
+            background-position: -64px 0px;
+            width: 16px;
+        }
+
+            .b-icon__up_3:hover {
+                background-position: -64px -16px;
+            }
+
+        .b-icon__up_4 {
+            height: 16px;
+            background-position: -96px 0px;
+            width: 16px;
+        }
+
+            .b-icon__up_4:hover {
+                background-position: -96px -16px;
+            }
+
+        .b-icon__down_1 {
+            height: 16px;
+            background-position: -16px 0px;
+            width: 16px;
+            margin-top: 17px;
+        }
+
+            .b-icon__down_1:hover {
+                background-position: -16px -16px;
+            }
+
+        .b-icon__down_2 {
+            height: 16px;
+            background-position: -48px 0px;
+            width: 16px;
+            margin-top: 17px;
+        }
+
+            .b-icon__down_2:hover {
+                background-position: -48px -16px;
+            }
+        .b-icon__down_3 {
+            height: 16px;
+            background-position: -80px 0px;
+            width: 16px;
+            margin-top: 17px;
+        }
+
+            .b-icon__down_3:hover {
+                background-position: -80px -16px;
+            }
+        .b-icon__down_4 {
+            height: 16px;
+            background-position: -112px 0px;
+            width: 16px;
+            margin-top: 17px;
+        }
+
+            .b-icon__down_4:hover {
+                background-position: -96px -16px;
+            }
+
+        .b-icon__left_1 {
+            height: 16px;
+            background-position: 0px -32px;
+            width: 16px;
+        }
+
+            .b-icon__left_1:hover {
+                background-position: 0px -48px;
+            }
+
+        .b-icon__left_2 {
+            height: 16px;
+            background-position: -32px -32px;
+            width: 16px;
+        }
+
+            .b-icon__left_2:hover {
+                background-position: -32px -48px;
+            }
+
+        .b-icon__left_3 {
+            height: 16px;
+            background-position: -64px -32px;
+            width: 16px;
+        }
+
+            .b-icon__left_3:hover {
+                background-position: -64px -48px;
+            }
+
+        .b-icon__left_4 {
+            height: 16px;
+            background-position: -96px -32px;
+            width: 16px;
+        }
+
+            .b-icon__left_4:hover {
+                background-position: -96px -48px;
+            }
+
+        .b-icon__right_1 {
+            height: 16px;
+            background-position: -16px -32px;
+            width: 16px;
+        }
+
+            .b-icon__right_1:hover {
+                background-position: -16px -48px;
+            }
+
+        .b-icon__right_2 {
+            height: 16px;
+            background-position: -48px -32px;
+            width: 16px;
+        }
+
+            .b-icon__right_2:hover {
+                background-position: -48px -48px;
+            }
+
+        .b-icon__right_3 {
+            height: 16px;
+            background-position: -80px -32px;
+            width: 16px;
+        }
+
+            .b-icon__right_3:hover {
+                background-position: -80px -48px;
+            }
+
+        .b-icon__right_4 {
+            height: 16px;
+            background-position: -112px -32px;
+            width: 16px;
+        }
+
+            .b-icon__right_4:hover {
+                background-position: -112px -48px;
+            }
+
+
+.up-down-icons a {
+    margin-right: 16px;
+    display: block;
+}
+
+.b-item{
+    height: 48px;
+    display: inline;
+    width: 256px;
+    position: relative;
+}
+.b-item div{
+    display: inline-block;
+}
+    .b-item__icon{
+        width: 32px;
+        height: 32px;
+        border-radius: 5px;
+        background-color: #be9d73;
+    }
+
+    .b-item__name{
+        background-color: #BE9D73;
+        border-radius: 5px 5px 5px 5px;
+        height: 32px;
+        margin-left: -3px;
+        margin-top: 0;
+        position: absolute;
+        width: 160px;
+    }
+
+    .b-item__counter{
+        background-color: #BE9D73;
+        position: absolute;
+        left: 200px;
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+.loc_doors{
+    list-style: none;
+    width: 256px;
+    text-align: left;
+}
+
+.loc_doors li{
+    padding-bottom: 5px;
+}
+
+.char_status span{
+    display: block;
+}
+
+.loc_info{
+    font-size: 12px;
+}
+
+.list_menu_main{
+    margin-top: -10px;
+}
+
+.life_bar{
+    position: relative;
+    background-color: rgba(174, 0, 0, 0.34);
+    width: 25%;
+    height: 10px;
+    border: 1px solid #ae0000;
+    border-radius: 4px;
+}
+
+.mana_bar{
+    background-color: rgba(0, 82, 175, 0.34);
+    position: relative;
+    width: 25%;
+    height: 10px;
+    border: 1px solid #0052af;
+    border-radius: 4px;
+    margin-top: 2px;
+}
+
+.persent{
+    position: relative;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.text{
+    position: relative;
+    height: 10px;
+    font-size: 10px;
+    margin-top: -12px;
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+.red{
+    background-color: #c60000;
+}
+
+.yellow{
+    background-color: #f1000e;
+}
+
+.yellowgreen{
+    background-color: rgba(255, 0, 14, 0.50);
+}
+
+.blue{
+    background-color: #00428b;
+}
+
+.bluelight{
+    background-color: #0062cf;
+}
+
+.bluelightlight{
+    background-color: rgba(0, 98, 207, 0.59);
+}
+
+.brown{
+    background-color: rgba(124, 33, 33, 0.65);
+}
+
+.exp_bar{
+    position: relative;
+    background-color: rgba(124, 33, 33, 0.34);
+    width: 25%;
+    height: 10px;
+    border: 1px solid rgba(124, 33, 33, 0.86);
+    border-radius: 4px;
+    margin-top: 2px;
+}
+.char_status div{
+    display: block;
+}
+
+.npc{
+    width: 100%;
+    color: #2d2d2d;
+    height: 14px;
+}
+
+.npc div.text{
+    position: relative;
+    height: 14px;
+    font-size: 13px;
+    margin-top: -15px;
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+.npc div.persent{
+    position: relative;
+    height: 14px;
+    border-radius: 3px;
+}
+
+.npc a{
+    color: #2d2d2d;
+}
+
+.npc a:hover{
+    font-weight: bold;
+}
+
+.npc span#p{
+    float: right;
+}
+
+
+
+

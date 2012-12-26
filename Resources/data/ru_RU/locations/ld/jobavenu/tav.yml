@@ -1,0 +1,8 @@
+id: "ld_jobavenu_tav"
+territory: "Город"
+name: "Таверна"
+info: "Это городская таверна, если хочешь кого-то найти - иди в таверну"
+territory: 1 #0|1
+doors:
+    - ["выйти", "ld_jobavenu_main", "e"]
+    - ["к барной стойке", ld_jobavenu_tavbs, "n"]

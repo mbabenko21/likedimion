@@ -1,0 +1,9 @@
+id: "ld_bank_inverse"
+territory: "Likedimion город"
+name: "Возле северных ворот"
+info: "Вы находитесь возле северных ворот, за которыми лес"
+territory: 1 #0|1
+doors:
+    - ["в банк", "ld_bank_hall", "e"]
+    - ["к конюшням", "ld_stable", "ne"]
+    - ["выйти из города", nw_gate, "n"]

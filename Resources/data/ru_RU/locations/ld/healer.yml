@@ -1,0 +1,10 @@
+id: "ld_healer"
+territory: "Город Likedimion"
+name: "Возле дома лекаря"
+info: "Вы находитесь возле одноэтажного здания, здесь живет лекарь"
+territory: 1 #0|1
+doors:
+    - ["на юг", ld_begin, "s"]
+    - ["войти в дом", ld_healer_house, "w"]
+    - ["к академии", ld_academy, "n"]
+    - ["на площадь", ld_cpl, "nw"]

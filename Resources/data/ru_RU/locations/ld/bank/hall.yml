@@ -1,0 +1,8 @@
+id: "ld_bank_hall"
+territory: "Город Likedimion"
+name: "В банке"
+info: "Вы находитесь в здании банка, здесь два выхода - на западе и на юге"
+territory: 1 #0|1
+doors:
+    - ["выйти в южную дверь", ld_bank_main, s]
+    - ["выйти в западную дверь", ld_bank_inverse, w]

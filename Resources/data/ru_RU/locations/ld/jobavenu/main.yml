@@ -1,0 +1,9 @@
+id: "ld_jobavenu_main"
+territory: "Город"
+name: "Рабочий квартал"
+info: "Вы вошли в рабочий квартал города. Здесь обитают мастера различных ремесел."
+territory: 1 #0|1
+doors:
+    - ["на площадь", "ld_cpl", "n"]
+    - ["войти в таверну", "ld_jobavenu_tav", "w"]
+    - ["на юг", "ld_jobavenu_avenu1", "s"]

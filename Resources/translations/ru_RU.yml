@@ -1,0 +1,165 @@
+app:
+  home_page: На главную
+  version: Версия
+  added: Добавил
+  back: Назад
+  sec: сек
+
+classes:
+  warrior: Воин
+  healer: Маг
+  sniper: Лучник
+  lw: Воин света
+  lh: Маг света
+  ls: Лучник света
+  dw: Воин тьмы
+  dh: Маг тьмы
+  ds: Лучник тьмы
+
+login_page:
+  login: Логин
+  password: Пароль
+  sign_in: В игру
+  registration: Регистрация
+  remember: Запомнить?
+  auth: Авторизация
+  help: Помощь
+  online: Онлайн
+  reg_complete: Регистрация завершена. Используйте логин и пароль для входа
+
+#Страница регистрации
+registration:
+  title: Регистрация
+  char_name: Имя персонажа
+  password_repeat: Повторите пароль
+  email: E-Mail
+  race: Сторона
+  light: Свет
+  dark: Тьма
+  class: Тип персонажа
+  button: Вперед!
+  antibot: Сосчитайте
+  plus: плюс
+  max: умножить
+
+text:
+  about_game: Glow Regeneration
+  prologue_text: Свет Возраждения
+
+errors:
+  errno: Код ошибки
+  err_message: Сообщение
+  err_file: Файл
+  err_line: Строка
+  exception: Неперехватываемое исключение
+  info_not_found: Описание недоступно
+  door_not_found: Переход невозможен
+  load_loc_failed: Ошибка загрузки локации. Локация %s не существует. Сообщите об ошибке администрации.
+  form:
+    empty: Поле %s обязательно для заполнения
+    not_confirm: Поля %s и %s не совпадают
+    not_match: Поле %s имеет неверный формат %s
+
+  reg:
+    login_not_valide: Поле логин может содержать только английские буквы, цифры и знак _
+    passwords_not_confirm: Введенные пароли не совпадают
+    email_not_valide: Вы ввели неверный E-Mail
+    char_name_is_not_valide: В имени персонажа разрешаются только русские буквы, минимум 4 буквы
+    captcha: Вы не правильно ввели капчу
+    user_exists: Пользователь с таким логином или Email уже существует
+    char_exists: Герой с таким именем уже существует
+  auth:
+    invalid: Неправильный логин или пароль
+
+menu:
+  char: Персонаж
+  service: Сервис
+  level: Ур
+  inventory: Инвентарь
+  skills: Навыки
+  war_skills: Боевые
+  base_skills: Базовые
+  prof_skills: Профессии
+  study_points: Очки обучения
+  war_skills_title: Боевые навыки
+  base_skills_title: Базовые навыки
+  prof_skills_title: Профессии
+  parameters: Параметры
+  ability: Способности
+  sp: оч. об-я
+
+stats:
+  0: Только начал свой путь
+  1: Новичек
+  2: Начинающий
+  3: Умелый
+  4: Искусный
+  5: Профессинонал
+  6: Мастер
+  7: Грандмастер
+  8: Лорд
+  9: Великий
+
+
+about_char:
+  name: Имя персонажа
+  reg:  Дата регистрации
+  class: Класс персонажа
+  level: Уровень
+  status: Статус
+  exp: Опыт
+
+skills:
+  strenge: Сила
+  dexterity: Ловкость
+  intelligence: Интеллект
+  endurance: Выносливость
+  regeneration: Регенерация
+  meditation: Медитация
+  life: Живучесть
+  energy: Энергия
+  cold_weapon: Хол. оружие
+  ranged_weapon: Стр. оружие
+  crush_weapon: Дроб. оружие
+  magic: Магия
+  dogfight: Рукопашный бой
+  attack: Нападение
+  block: Защита
+  bias: Уклон
+  parring: Парирование
+  magic_bias: Маг. уклон
+  magic_parring: Маг. парир-е
+  magic_shield: Маг. щит
+  alchemist: Алхимия
+  carpenter: Плотницкое искусство
+  miner: Рудокопство
+  juvelir: Ювелирное искусство
+  smith: Кузнечное дело
+  tailor: Отделка кожи
+  stealer: Воровской промысел
+
+
+params:
+  hit: Точность
+  min_damage: Мин. урон
+  max_damage: Макс. урон
+  damage: Урон
+  armor_from: Защита
+  armor_from_crushing: От дробящего
+  armor_from_cutting: От от режущего
+  armor_from_pricking: От стрел
+  armor_from_magic: От магии
+  shield: Щит
+  speed: Скорость атаки
+  dogfight: Врукопашную
+
+inv:
+  up: вверх
+  down: вниз
+
+dialog:
+  end: Конец диалога
+help:
+  war_skill_up: Чтобы поднять какой-либо навык - найдите NPC, который согласится вас обучить
+  base_skill_up: Чтобы поднять регенирацию или медитацию найдите NPC, который согласится вас обучить, остальные навыки поднимаются с уровнем в зависимости от класса персонажа
+  prof_skill_up: Чтобы поднять какой-либо навык - найдите NPC, который согласится вас обучить, однако, никто не научит вас идеально профессией. Профессии улучшаются с опытом той или иной профессии, чем чаще вы используете профессию, тем опытнее становитесь. Станьте мастером какой-либо профессии

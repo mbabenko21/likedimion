@@ -1,0 +1,83 @@
+.b-go {
+    position: absolute;
+    background: url("/images/traceset.png") 0 0 no-repeat;
+    display: block;
+    margin-left: -24px;
+}
+.b-part{
+    width: 16px;
+    height: 16px;
+}
+    .b-n{
+        background-position: -16px 0px;
+    }
+        .b-n:hover{
+            background-position: -64px 0px;
+        }
+
+    .b-w{
+        background-position: 0px -16px;
+    }
+        .b-w:hover{
+            background-position: -48px -16px;
+        }
+
+    .b-e{
+        background-position: -32px -16px;
+    }
+        .b-e:hover{
+            background-position: -80px -16px;
+        }
+
+    .b-s{
+        background-position: -16px -32px;
+    }
+        .b-s:hover{
+            background-position: -64px -32px;
+        }
+
+    .b-nw{
+        background-position: 0px 0px;
+    }
+        .b-nw:hover{
+            background-position: -48px 0px;
+        }
+    .b-ne{
+        background-position: -32px 0px;
+    }
+        .b-ne:hover{
+            background-position: -80px 0px;
+        }
+    .b-sw{
+        background-position: 0px -32px;
+    }
+        .b-sw:hover{
+            background-position: -48px -32px;
+        }
+    .b-se{
+        background-position: -32px -32px;
+    }
+        .b-se:hover{
+            background-position: -80px -32px;
+        }
+
+.b-set__1{
+    position: absolute;
+    background: url("/images/iconset-1.png") 0 0 no-repeat;
+    display: block;
+    margin-left: -24px;
+}
+    .b-char{
+        background-position: 0px 0px;
+    }
+        .b-char:hover{
+            background-position: 0px -16px;
+        }
+
+    .b-service{
+        background-position: -32px 0px;
+    }
+        .b-service:hover{
+            background-position: -32px -16px;
+        }
+

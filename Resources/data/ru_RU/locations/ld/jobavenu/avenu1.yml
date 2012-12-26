@@ -1,0 +1,19 @@
+id: "ld_jobavenu_avenu1"
+territory: "Город"
+name: "Рабочий квартал"
+info: "На востоке распологается кузница, на западе столярная мастерска"
+territory: 1 #0|1
+doors:
+    - ["к таверне", "ld_jobavenu_main", "n"]
+    - ["в кузницу", "ld_jobavenu_smith", "e"]
+    - ["в столярную мастерскую", "ld_jobavenu_carpenter", "w"]
+    - ["в южную часть", "ld_jobavenu_avenu2", "s"]
+npc:
+  little_man:
+    npc: "little_man"
+    respawn: [100, 200]
+    move: [1, 200, 300]
+  little_woman:
+      npc: "little_woman"
+      respawn: [100, 200]
+      move: [1, 200, 300]

@@ -1,0 +1,17 @@
+name: "Привратник Уин"
+type: "man"
+dialog: "privratnik"
+info: 'Старец, который много повидал в этой жизни'
+char_params: []
+equip: []
+base_skills:
+  strenge: 20
+  dexterity: 20
+  intelligence: 20
+  life: 15
+  energy: 4
+  regeneration: 9
+  meditation: 9
+war_skills:
+  cold_weapon: 12
+war_params: []

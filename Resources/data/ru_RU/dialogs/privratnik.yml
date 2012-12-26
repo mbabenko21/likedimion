@@ -1,0 +1,61 @@
+start:
+  npc: "Приветствую тебя, {%name%}. Меня зовут Уин, я могу помочь начать тебе твой путь в этом мире."
+  answers:
+    0:
+      reply: "Отлично, рассказывай..."
+      section: "begin_tutorial"
+    1:
+      reply: "Мне кажется, что я тут когда-то был, сам как-нибудь разберусь"
+      section: end
+end:
+  npc: "Пока"
+
+begin_tutorial:
+  npc: "О чем бы ты хотел узнать?"
+  answers:
+    0:
+      reply: "О передвижении"
+      section: "tutorial_move"
+    1:
+      reply: "О параметрах"
+      section: "tutorial_parameters"
+    2:
+      reply: "О базовых навыках"
+      section: "tutorial_base_skills"
+    3:
+      reply: "О боевых навыках"
+      section: "tutorial_war_skills"
+    4:
+      reply: "О профессиях"
+      section: "tutorial_professions"
+
+    to_start:
+      reply: "Мне это не интересно, что еще можешь рассказать?"
+      section: "start"
+    to_end:
+      reply: "Все понятно, ты какой-то зануда, мне пора"
+      section: "end"
+tutorial_move:
+  npc: "Ты можешь передвигаться по миру, внизу есть ссылки на выходы из локации.\n Ноги показывают направление, куда вы пойдете.\n Чтобы перейти в другую локацию - кликните по ссылке"
+  answers:
+    0:
+      reply: "У меня есть еще вопросы"
+      section: "begin_tutorial"
+    to_start:
+          reply: "Мне это не интересно, что еще можешь рассказать?"
+          section: "start"
+    to_end:
+          reply: "Все понятно, ты какой-то зануда, мне пора"
+          section: "end"
+tutorial_parameters:
+  npc: "У вашего персонажа есть определенные параметры, от которых зависит его состояние\n Посмотреть их можно кликнув по иконке рюкзака вверху и выбрав раздел \"Параметры\"\n"
+  answers:
+      0:
+        reply: "У меня есть еще вопросы"
+        section: "begin_tutorial"
+      to_start:
+            reply: "Мне это не интересно, что еще можешь рассказать?"
+            section: "start"
+      to_end:
+            reply: "Все понятно, ты какой-то зануда, мне пора"
+            section: "end"

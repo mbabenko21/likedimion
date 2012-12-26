@@ -1,0 +1,31 @@
+#Generate base item mb 
+name:
+    s: меч Тысячи Истин
+    p: меч Тысячи Истин
+look: Этот меч был сделам Содателем сией игры - Максимом Александровичем Бабенко для теста
+attack_name: неведомой хуйней
+cost: 1
+#Armors head|hand|body|leg|glov|shoes
+#Weapons sword|knife|axe|hummer|staff|bow|crossbow
+type: sword
+params:
+    min_damage: 43
+    max_damage: 49
+    speed: 
+    armor_from_crushing:
+    armor_from_cutting:
+    armor_from_pricking:
+    armor_from_magic:
+    bias:
+    parring:
+modification: 6
+needs:
+    class:
+    level:
+    strenge:
+    dexterity:
+    intelligence:
+jaks:
+bonuses:
+  life:
+  energy:

@@ -1,0 +1,15 @@
+id: "ld_bank_main"
+territory: "Город Likedimion"
+name: "Возле банка"
+info: "Вы стоите перед главным входом в городской банк. Здесь можно оставить на хранение вещи"
+territory: 1 #0|1
+doors:
+    - ["войти в банк", "ld_bank_hall", "n"]
+    - ["на площадь", "ld_cpl", s]
+    - ["к академии", "ld_academy", e]
+    - ["к конюшням", "ld_stable", ne]
+npc:
+  dog_1:
+     npc: "dog"
+     respawn: [100, 300]
+     move: [1, 50, 300]

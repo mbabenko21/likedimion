@@ -1,0 +1,27 @@
+#Generate base item nov 
+name:
+    s: поручи новобраца
+    p: поручи новобранцев
+look: Нарукавники, больше похожие на зашиту для плотников
+cost: 3
+type: hand
+params:
+    min_damage: 
+    max_damade: 
+    speed: 
+    armor_from_crushing:
+    armor_from_cutting:
+    armor_from_pricking: 1
+    armor_from_magic:
+    bias:
+    parring:
+needs:
+    class:
+    level:
+    strenge:
+    dexterity:
+    intelligence:
+jaks:
+bonuses:
+  life:
+  energy:

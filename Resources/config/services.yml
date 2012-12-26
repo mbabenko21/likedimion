@@ -1,0 +1,86 @@
+#Depedency Injection pattern
+#Создание сервисов
+#Cервис для работы с аккаунтом
+user_service:
+  instance: MB\Services\UserServiceImpl
+  arguments: [@entityManager]
+  autocall:
+    setRepository: [$EN\User]
+
+#Сервис для работы с персонажем
+char_service:
+  instance: MB\Services\CharServiceImpl
+  arguments: [@entityManager]
+  autocall:
+    setRepository: [$EN\Char\AbstractChar]
+
+#Сервис диалогов
+dialog_service:
+  instance: MB\Services\DialogServiceImpl
+
+#Сервис авторизации
+auth_service:
+  instance: MB\Services\AuthServiceImpl
+  autocall:
+    setUserService: [@user_service]
+
+#Сервис новостей
+news_service:
+  instance: MB\Services\NewsServiceImpl
+  arguments: [@entityManager]
+  autocall:
+    setRepository: [MB\Glor\Forum\News]
+
+#Сервис калькуляции параметров
+calculate_service:
+  instance: MB\Services\CalculateServiceImpl
+  autocall:
+    setCharService: [@char_service]
+    setAppConfig: [@app_config]
+
+#Сервис предметов
+items_service:
+  instance: MB\Items\ItemsServiceImpl
+  autocall:
+    setLoader: [@items_loader]
+    setAppConfig: [@app_config]
+#Загрузчик локаций
+location_loader:
+  instance: MB\Loader\Providers\LocationYamlLoader
+
+npc_loader:
+  instance: MB\Loader\Providers\NpcYamlLoader
+
+#Дампер yml
+yaml_saver:
+  instance: MB\Saver\YamlSaver
+
+#Сервис локаций
+locations_service:
+  instance: MB\Services\LocationsDBServiceImpl
+  arguments: [@location_loader, @entityManager]
+  autocall:
+    setSaver: [@yaml_saver]
+    setCharListRepository: [MB\Glor\Locations\CharList]
+    setNpcListRepository: [MB\Glor\Locations\NpcList]
+    setLocationsRepository: [MB\Glor\Locations\LocationDB]
+#NPC сервис
+npc_service:
+  instance: MB\Npc\NpcYamlServiceImpl
+  autocall:
+    setLoader: [@npc_loader]
+    setSaver: [@yaml_saver]
+
+#AI
+ai:
+  instance: MB\Services\AIServiceImpl
+  autocall:
+    setLocationService: [@locations_service]
+    setCalculateService: [@calculate_service]
+    setMoveService: [@move_service]
+    setCharService: [@char_service]
+#Сервис передвижения
+move_service:
+  instance: MB\Services\MoveServiceImpl
+  autocall:
+    setLocationService: [@locations_service]

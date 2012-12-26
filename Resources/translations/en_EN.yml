@@ -1,0 +1,13 @@
+login_page:
+  login: Login
+  password: Password
+  sign_in: In game
+  registration: Registration
+  remember: Remember?
+  auth: Authorisation
+  help: Help
+  online: Online
+
+text:
+  about_game: Glow Regeneration
+  prologue_text: Glow Regeneration

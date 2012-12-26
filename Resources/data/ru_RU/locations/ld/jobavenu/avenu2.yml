@@ -1,0 +1,10 @@
+id: "ld_jobavenu_avenu2"
+territory: "Город"
+name: "Рабочий квартал"
+info: "Вы прошли в южную часть рабочего квартала, здесь обосновались ювелир и алхимик"
+territory: 1 #0|1
+doors:
+    - ["в северную часть", "ld_jobavenu_avenu1", "n"]
+    - ["к ювелиру", "ld_jobavenu_juvelir", "w"]
+    - ["к алхимику", "ld_jobavenu_alchemist", "e"]
+    - ["к южным воротам", "ld_southgate", "s"]

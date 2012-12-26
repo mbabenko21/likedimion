@@ -1,0 +1,28 @@
+#Generate base item nov 
+name:
+    s: куртка новобранца
+    p: куртки новобранца
+look: Обыкновенная поношенная куртка
+cost: 5
+type: body
+params:
+    min_damage: 
+    max_damade: 
+    speed: 
+    armor_from_crushing:
+    armor_from_cutting: 2
+    armor_from_pricking:
+    armor_from_magic:
+    bias:
+    parring:
+modification: 2
+needs:
+    class:
+    level:
+    strenge:
+    dexterity:
+    intelligence:
+jaks:
+bonuses:
+  life:
+  energy:

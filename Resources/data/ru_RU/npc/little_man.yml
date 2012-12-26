@@ -1,0 +1,27 @@
+name: "маленький мальчик"
+type: man #man|animal|crim
+dialog: "little_man"
+char_params: []
+equip:
+  left_hand:
+  right_hand:
+  head:
+  body:
+  hand:
+  leg:
+  cloak:
+  gloves:
+  shoes:
+  bras:
+  amulet:
+base_skills:
+  strenge: 2
+  dexterity: 3
+  intelligence: 2
+  life:  4
+  energy: 2
+  regeneration: 5
+  meditation: 3
+war_skills:
+  dogfight: 1
+war_params: []

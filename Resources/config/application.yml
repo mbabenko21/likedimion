@@ -1,0 +1,17 @@
+name: "Likedimion"
+mode: "dev"
+version: "1.0.1-alpha"
+author: "Maks Babenko, Ilya Stadnikov"
+key: "glor_mb_lib"
+locale: "ru_RU"
+regen_time: 60
+base_speed: 3
+items_per_page: 10
+map:
+  entity: "MB\Glor"
+  smarty:
+    template_dir: Resources/templates/templates/
+    compile_dir: Resources/templates/compile/
+    config_dir: Resources/templates/configs/
+    cache_dir: Resources/templates/cache/
+

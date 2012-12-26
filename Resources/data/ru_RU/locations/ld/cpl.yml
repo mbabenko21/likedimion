@@ -1,0 +1,12 @@
+id: "ld_cpl"
+territory: "Город Likedimion"
+name: "Центральная площадь"
+info: "Вы находитесь на центральной площади города. Обычно здесь довольно людно"
+territory: 1 #0|1
+doors:
+    - ["к дому лекаря", ld_healer, "se"]
+    - ["к академии", ld_academy, "ne"]
+    - ["к банку", ld_bank_main, "n"]
+    - ["к двору рыцарей", ld_rist, "sw"]
+    - ["в рабочий квартал", ld_jobavenu_main, "s"]
+    - ["в торговый квартал", ld_tradeavenu_main, "nw"]
