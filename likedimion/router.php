@@ -14,6 +14,6 @@ if(isset($_GET["do"]))
     if(file_exists($action)){
         include_once $action;
     } else {
-        header("Location: /?");
+        MB\View::make("errors/404.tpl");
     }
 }
