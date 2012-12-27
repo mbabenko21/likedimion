@@ -51,6 +51,11 @@ class Post extends AbstractAutoIncrementObject
      * @JoinColumn(name="parent_post_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $parentPost;
+    /**
+     * @var bool
+     * @Column(type="smallint", length=1)
+     */
+    protected $trash = 0;
 
 
     public function __construct()
@@ -153,5 +158,13 @@ class Post extends AbstractAutoIncrementObject
     public function setParentPost($parentPost)
     {
         $this->parentPost = $parentPost;
+    }
+
+    /**
+     * @param boolean $trash
+     */
+    public function setTrash($trash)
+    {
+        $this->trash = $trash;
     }
 }

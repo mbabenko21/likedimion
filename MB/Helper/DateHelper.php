@@ -21,6 +21,17 @@ class DateHelper
     }
 
     /**
+     * @param $timestamp
+     * @return \DateTime
+     */
+    public static function createFromTimeStamp($timestamp)
+    {
+        $datetime = new \DateTime();
+        $datetime->setTimestamp($timestamp);
+        return $datetime;
+    }
+
+    /**
      * Получение даты в нужном формате с учетом указаной локали
      * по умолчанию
      * format: %e %B (12 Дек)

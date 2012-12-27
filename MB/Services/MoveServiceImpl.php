@@ -6,6 +6,9 @@ namespace MB\Services;
  * Time: 22:00
  */
 use MB\Common\MoveService;
+use MB\I\EventsStorage;
+use MB\Events\MoveEvent;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use MB\Exception\FileNotFoundException;
 use MB\Exception\MoveException;
 use MB\I\NpcInterface;
@@ -19,6 +22,8 @@ class MoveServiceImpl implements MoveService
 {
     /** @var \MB\Common\LocationService */
     protected $locationService;
+    /** @var \Symfony\Component\EventDispatcher\EventDispatcher */
+    protected $eventDispatcher;
 
     /**
      * @param \MB\Glor\Npc\AbstractNpc|\MB\I\NpcInterface $npc
@@ -27,7 +32,7 @@ class MoveServiceImpl implements MoveService
      * @throws \MB\Exception\MoveException
      * @return void
      */
-    public function move(NpcInterface $npc, LocationInterface $toLoc, LocationInterface $fromLoc = null)
+    public function move(AbstractNpc $npc, LocationInterface $toLoc, LocationInterface $fromLoc = null)
     {
         if ($npc instanceof AbstractChar) {
             $this->moveChar($npc, $toLoc);
@@ -47,10 +52,16 @@ class MoveServiceImpl implements MoveService
      */
     protected function moveChar(AbstractChar $char, LocationInterface $toLoc)
     {
+        $fromLoc = $this->locationService->getLocation($char->getCharParams()->location);
         $fromCharList = $this->locationService->charListInstance($char->getCharParams()->location);
         $toCharList = $this->locationService->charListInstance($toLoc->getId());
         $fromCharList->remove($char);
         $toCharList->add($char);
+        $charParams = $char->getCharParams();
+        $charParams->location = $toLoc->getId();
+        $char->setCharParams($charParams);
+        $event = new MoveEvent($char, $fromLoc, $toLoc);
+        $this->eventDispatcher->dispatch(EventsStorage::MOVE, $event);
         $this->locationService->importLists($fromCharList, $toCharList);
     }
 
@@ -82,6 +93,8 @@ class MoveServiceImpl implements MoveService
                 $npc->setCharParams($charParams);
                 $toNpcList->add($npc);
                 $this->locationService->importLists($fromNpcList, $toNpcList);
+                $event = new MoveEvent($npc, $fromLoc, $toLoc);
+                $this->eventDispatcher->dispatch(EventsStorage::MOVE, $event);
             } catch (FileNotFoundException $e) {
                 throw new MoveException("Transaction to {$toLoc->getId()} is impossible");
             }
@@ -94,5 +107,13 @@ class MoveServiceImpl implements MoveService
     public function setLocationService(LocationService $locationService)
     {
         $this->locationService = $locationService;
+    }
+
+    /**
+     * @param \Symfony\Component\EventDispatcher\EventDispatcher $eventDispatcher
+     */
+    public function setEventDispatcher(EventDispatcher $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
     }
 }

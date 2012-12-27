@@ -18,5 +18,5 @@ interface MoveService
      * @param LocationInterface $fromLoc
      * @return void
      */
-    public function move(NpcInterface $npc, LocationInterface $toLoc, LocationInterface $fromLoc = null);
+    public function move(AbstractNpc $npc, LocationInterface $toLoc, LocationInterface $fromLoc = null);
 }

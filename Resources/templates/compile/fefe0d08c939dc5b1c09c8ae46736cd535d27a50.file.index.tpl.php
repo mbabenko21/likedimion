@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2012-12-25 19:52:35
+<?php /* Smarty version Smarty-3.1.12, created on 2012-12-27 23:25:42
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\game\main\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2057250d896d2285e30-72667617%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fefe0d08c939dc5b1c09c8ae46736cd535d27a50' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\game\\main\\index.tpl',
-      1 => 1356450744,
+      1 => 1356636332,
       2 => 'file',
     ),
     '215698c7640cbb297996a8212b39a1e84ecfae22' => 
@@ -50,7 +50,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <?php /*  Call merged included template "layout/errors.tpl" */
 $_tpl_stack[] = $_smarty_tpl;
  $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/errors.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('errors'=>$_smarty_tpl->tpl_vars['view']->value['errors']), 0, '2057250d896d2285e30-72667617');
-content_50d9cbc44e3121_44416232($_smarty_tpl);
+content_50dca0b6b86569_11011435($_smarty_tpl);
 $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/errors.tpl" */?>
     <?php }?>
 
@@ -67,7 +67,7 @@ $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/erro
     <?php /*  Call merged included template "layout/menu.tpl" */
 $_tpl_stack[] = $_smarty_tpl;
  $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0, '2057250d896d2285e30-72667617');
-content_50d9cbc4af5207_63386916($_smarty_tpl);
+content_50dca0b730e320_87681811($_smarty_tpl);
 $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/menu.tpl" */?>
     
     
@@ -139,6 +139,22 @@ $_smarty_tpl->tpl_vars["sp"]->value = ''; $_smarty_tpl->tpl_vars["sp"]->nocache 
 </div>
         </div>
     </div>
+    
+    
+        <?php if (MB\Core\Kernel\SmartyService::length($_smarty_tpl->tpl_vars['view']->value['journal'])>0){?>
+        <div class="errors">
+            <ul>
+                <?php  $_smarty_tpl->tpl_vars['mess'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['mess']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['view']->value['journal']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['mess']->key => $_smarty_tpl->tpl_vars['mess']->value){
+$_smarty_tpl->tpl_vars['mess']->_loop = true;
+?>
+                    <li class="error_item"><span><?php echo $_smarty_tpl->tpl_vars['mess']->value->getPost()->getMessage();?>
+</span></li>
+                <?php } ?>
+            </ul>
+        </div>
+        <?php }?>
     
     
     <ul class="loc_doors">
@@ -215,9 +231,9 @@ $_smarty_tpl->tpl_vars["door"]->_loop = true;
 
 </div>
 <?php echo $_smarty_tpl->getSubTemplate ("layout/footer.html.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-25 19:52:36
+<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-27 23:25:42
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\layout\errors.tpl" */ ?>
-<?php if ($_valid && !is_callable('content_50d9cbc44e3121_44416232')) {function content_50d9cbc44e3121_44416232($_smarty_tpl) {?><div class="errors">
+<?php if ($_valid && !is_callable('content_50dca0b6b86569_11011435')) {function content_50dca0b6b86569_11011435($_smarty_tpl) {?><div class="errors">
     <ul>
     <?php  $_smarty_tpl->tpl_vars['error'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['error']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['errors']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -228,9 +244,9 @@ $_smarty_tpl->tpl_vars['error']->_loop = true;
 </span></li>
     <?php } ?>
     </ul>
-</div><?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-25 19:52:36
+</div><?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-27 23:25:43
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\layout\menu.tpl" */ ?>
-<?php if ($_valid && !is_callable('content_50d9cbc4af5207_63386916')) {function content_50d9cbc4af5207_63386916($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
+<?php if ($_valid && !is_callable('content_50dca0b730e320_87681811')) {function content_50dca0b730e320_87681811($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
 ?><div class="main_menu">
     <ul class="menu list_menu_main">
         <li>

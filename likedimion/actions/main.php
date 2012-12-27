@@ -17,28 +17,27 @@ $targetLoc = \MB\Helper\RequestHelper::get("go", null);
 $locService = \MB\Container::get("locations_service");
 /** @var $charService \MB\Common\CharService */
 $charService = \MB\Container::get("char_service");
-
+/** @var $moveService \MB\Common\MoveService */
+$moveService = \MB\Container::get("move_service");
+/** @var $journalService \MB\Common\JournalService */
+$journalService = \MB\Container::get("journal_service");
+$journalService->clearJournal();
 $errors = array();
 /**
  * Переход между локациями
  */
 if (!is_null($targetLoc)) {
     $charParams = $char->getCharParams();
+    $charParams->sex = "m";
+    $char->setCharParams($charParams);
     try {
         $location = $locService->getLocation($charParams->location);
         $door = $location->getDoor($targetLoc);
         try {
             $targetLoc = $locService->getLocation($targetLoc);
-            $charListOld = $locService->charListInstance($char->getCharParams()->location);
-            $charListNew = $locService->charListInstance($targetLoc->getId());
-            $charParams->location = $targetLoc->getId();
-            $char->setCharParams($charParams);
-            $charListOld->remove($char);
-            $charListNew->add($char);
-            $locService->importLists($charListOld, $charListNew);
-            RequestHelper::redirect("/?do=main&".rand(0000,9999));
+            $moveService->move($char, $targetLoc, $location);
         } catch (\Exception $e) {
-            $errors[] = sprintf(\MB\Lang::line("errors", "load_loc_failed"), $targetLoc);
+            $errors[] = sprintf(\MB\Lang::line("errors", "load_loc_failed"), $targetLoc->getId());
         }
     } catch (LocationException $e) {
         $errors[] = \MB\Lang::line("errors", "door_not_found");
@@ -64,7 +63,7 @@ foreach($npcList as $npc){
 }
 
 $expP = $expTable->getLevel($char->getLevel()+1)->getExpPercent($char->getCharParams()->expirience, $char->getLevel()+1);
-
+$journal = $journalService->getLocJournal($location);
 $charList = $locService->charListInstance($locId);
 $data = array(
     "char" => $char->getCharParams(),
@@ -80,7 +79,8 @@ $data = array(
     "others" => $others,
     "life_p" => round($char->getCharParams()->life/$char->getCharParams()->maxLife,2),
     "mana_p" => round($char->getCharParams()->energy/$char->getCharParams()->maxEnergy,2),
-    "exp_p"  => $expP
+    "exp_p"  => $expP,
+    "journal" => $journal,
 );
 
 MB\View::make("game/main/index.tpl", $data);

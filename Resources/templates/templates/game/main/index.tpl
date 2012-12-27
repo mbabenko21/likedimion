@@ -46,6 +46,17 @@
         </div>
     </div>
     {/block}
+    {block name="Journal"}
+        {if $view.journal|length > 0}
+        <div class="errors">
+            <ul>
+                {foreach from=$view.journal item=mess}
+                    <li class="error_item"><span>{$mess->getPost()->getMessage()}</span></li>
+                {/foreach}
+            </ul>
+        </div>
+        {/if}
+    {/block}
     {block name="mans_npc"}
     <ul class="loc_doors">
         {foreach from=$view.mans item=man}

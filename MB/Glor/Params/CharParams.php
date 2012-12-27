@@ -29,6 +29,8 @@ namespace MB\Glor\Params;
  * @property string $rideAnimal
  * @property string $location
  * @property string $criminalStatus
+ *
+ * @property string $sex
  */
 class CharParams extends AbstractList
 {

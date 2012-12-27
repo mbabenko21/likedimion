@@ -6,6 +6,7 @@ namespace MB\Core\Kernel;
  *         Time: 9:39
  */
 use MB\Loader\Providers\YamlLoader;
+use MB\Configuration;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use MB\Loader\Providers\ServiceLoader;
@@ -13,12 +14,38 @@ use MB\Container;
 
 class Services
 {
-
-    public static function init(ContainerBuilder $builder)
+    /**
+     * @static
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $builder
+     * @return \Symfony\Component\DependencyInjection\ContainerBuilder
+     */
+    public static function createServices(ContainerBuilder $builder)
     {
         $loader = new YamlLoader(ROOT_DIR . "/Resources/config/services.yml");
-        $serviceConfiguration = new \MB\Configuration($loader);
-        $defs = array();
+        $serviceConfiguration = new Configuration($loader);
+        return self::init($builder, $serviceConfiguration);
+    }
+
+    /**
+     * @static
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $builder
+     * @return \Symfony\Component\DependencyInjection\ContainerBuilder
+     */
+    public static function createListeners(ContainerBuilder $builder)
+    {
+        $loader = new YamlLoader(ROOT_DIR . "/Resources/config/listeners.yml");
+        $serviceConfiguration = new Configuration($loader);
+        return self::init($builder, $serviceConfiguration);
+    }
+
+    /**
+     * @static
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $builder
+     * @param \MB\Configuration $serviceConfiguration
+     * @return \Symfony\Component\DependencyInjection\ContainerBuilder
+     */
+    protected static function init(ContainerBuilder $builder, Configuration $serviceConfiguration)
+    {
         foreach ($serviceConfiguration->getConfiguration() as $key => $config) {
             $serviceLoader = new ServiceLoader($config, $key);
             $arguments = $serviceLoader->getArguments();

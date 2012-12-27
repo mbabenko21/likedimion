@@ -84,3 +84,12 @@ move_service:
   instance: MB\Services\MoveServiceImpl
   autocall:
     setLocationService: [@locations_service]
+    setEventDispatcher: [@event_dispatcher]
+
+#Сервис рботы с журалом
+journal_service:
+  instance: MB\Services\JournalServiceImpl
+  arguments: [@entityManager]
+  autocall:
+    setRepository: [MB\Glor\Forum\Journal]
+    setAppConfig: [@app_config]

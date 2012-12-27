@@ -30,6 +30,8 @@ class ApplicationConfiguration extends Configuration
     protected $baseSpeed;
     /** @var int */
     protected $itemsPerPage;
+    /** @var int */
+    protected $journalMessageLeave;
 
     public function __construct(LoaderInterface $loader)
     {
@@ -45,6 +47,7 @@ class ApplicationConfiguration extends Configuration
         $this->setAppKey($data["key"]);
         $this->setBaseSpeed($data["base_speed"]);
         $this->setItemsPerPage($data["items_per_page"]);
+        $this->setJournalMessageLeave($data["journal_life"]);
     }
 
     /**
@@ -205,5 +208,21 @@ class ApplicationConfiguration extends Configuration
     public function setItemsPerPage($itemsPerPage)
     {
         $this->itemsPerPage = $itemsPerPage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getJournalMessageLeave()
+    {
+        return $this->journalMessageLeave;
+    }
+
+    /**
+     * @param int $journalMessageLeave
+     */
+    public function setJournalMessageLeave($journalMessageLeave)
+    {
+        $this->journalMessageLeave = $journalMessageLeave;
     }
 }

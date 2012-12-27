@@ -1,7 +1,8 @@
 name: "собака"
 type: "animal" #man|animal|crim
 dialog: ""
-char_params: []
+char_params:
+  sex: f
 equip:
   left_hand:
   right_hand:

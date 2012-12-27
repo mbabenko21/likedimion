@@ -1,0 +1,4 @@
+move_listener:
+  instance: MB\Listeners\MoveListener
+  autocall:
+    setJournalService: [@journal_service]

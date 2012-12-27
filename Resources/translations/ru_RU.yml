@@ -16,6 +16,16 @@ classes:
   dh: Маг тьмы
   ds: Лучник тьмы
 
+move:
+  n: север
+  s: юг
+  w: запад
+  e: восток
+  nw: северо-запад
+  ne: северо-восток
+  sw: юго-запад
+  se: юго-восток
+
 login_page:
   login: Логин
   password: Пароль
@@ -101,7 +111,11 @@ stats:
   8: Лорд
   9: Великий
 
-
+helper:
+  come_move_message_m: пришел %s
+  come_move_message_f: пришла %s
+  escape_move_message_m: %s ушел на %s
+  escape_move_message_f: %s ушла на %s
 about_char:
   name: Имя персонажа
   reg:  Дата регистрации

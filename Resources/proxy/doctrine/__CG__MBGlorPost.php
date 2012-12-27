@@ -114,6 +114,12 @@ class Post extends \MB\Glor\Post implements \Doctrine\ORM\Proxy\Proxy
         return parent::setParentPost($parentPost);
     }
 
+    public function setTrash($trash)
+    {
+        $this->__load();
+        return parent::setTrash($trash);
+    }
+
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -129,10 +135,52 @@ class Post extends \MB\Glor\Post implements \Doctrine\ORM\Proxy\Proxy
         return parent::setId($id);
     }
 
+    public function __get($name)
+    {
+        $this->__load();
+        return parent::__get($name);
+    }
+
+    public function __set($name, $value)
+    {
+        $this->__load();
+        return parent::__set($name, $value);
+    }
+
+    public function __isset($name)
+    {
+        $this->__load();
+        return parent::__isset($name);
+    }
+
+    public function export()
+    {
+        $this->__load();
+        return parent::export();
+    }
+
+    public function __unset($name)
+    {
+        $this->__load();
+        return parent::__unset($name);
+    }
+
+    public function getSum()
+    {
+        $this->__load();
+        return parent::getSum();
+    }
+
+    public function count()
+    {
+        $this->__load();
+        return parent::count();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'postDate', 'message', 'id', 'author', 'adressat', 'comments', 'parentPost');
+        return array('__isInitialized__', 'postDate', 'message', 'trash', 'id', 'author', 'adressat', 'comments', 'parentPost');
     }
 
     public function __clone()
