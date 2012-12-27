@@ -2,7 +2,8 @@ name: "Привратник Уин"
 type: "man"
 dialog: "privratnik"
 info: 'Старец, который много повидал в этой жизни'
-char_params: []
+char_params:
+  sex: m
 equip: []
 base_skills:
   strenge: 20

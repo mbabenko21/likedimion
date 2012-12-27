@@ -1,7 +1,8 @@
 name: "маленький мальчик"
 type: man #man|animal|crim
 dialog: "little_man"
-char_params: []
+char_params:
+  sex: m
 equip:
   left_hand:
   right_hand:

@@ -80,7 +80,7 @@ $data = array(
     "life_p" => round($char->getCharParams()->life/$char->getCharParams()->maxLife,2),
     "mana_p" => round($char->getCharParams()->energy/$char->getCharParams()->maxEnergy,2),
     "exp_p"  => $expP,
-    "journal" => $journal,
+    "journal" => array_reverse($journal),
 );
 
 MB\View::make("game/main/index.tpl", $data);

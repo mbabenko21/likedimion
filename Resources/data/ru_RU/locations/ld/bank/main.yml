@@ -12,4 +12,4 @@ npc:
   dog_1:
      npc: "dog"
      respawn: [100, 300]
-     move: [1, 50, 300]
+     move: [2, 50, 300, 'ld_']

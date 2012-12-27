@@ -11,4 +11,4 @@ npc:
   0:
     npc: "cat"
     respawn: [300, 500]
-    move: [1, 50, 100]
+    move: [3, 50, 100, 'ld_']
