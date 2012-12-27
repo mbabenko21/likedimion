@@ -21,13 +21,13 @@ class MoveServiceImpl implements MoveService
     protected $locationService;
 
     /**
-     * @param \MB\Glor\Npc\AbstractNpc $npc
+     * @param \MB\Glor\Npc\AbstractNpc|\MB\I\NpcInterface $npc
      * @param LocationInterface $toLoc
      * @param LocationInterface $fromLoc
      * @throws \MB\Exception\MoveException
      * @return void
      */
-    public function move(AbstractNpc $npc, LocationInterface $toLoc, LocationInterface $fromLoc = null)
+    public function move(NpcInterface $npc, LocationInterface $toLoc, LocationInterface $fromLoc = null)
     {
         if ($npc instanceof AbstractChar) {
             $this->moveChar($npc, $toLoc);
