@@ -1,5 +1,7 @@
 <?php
 /*
+ *  $Id$
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -13,25 +15,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Tools\Console\Command;
 
 use Symfony\Component\Console\Input\InputArgument,
-Symfony\Component\Console\Input\InputOption,
-Symfony\Component\Console,
-Doctrine\ORM\Tools\Export\ClassMetadataExporter,
-Doctrine\ORM\Tools\ConvertDoctrine1Schema,
-Doctrine\ORM\Tools\EntityGenerator;
+    Symfony\Component\Console\Input\InputOption,
+    Symfony\Component\Console,
+    Doctrine\ORM\Tools\Export\ClassMetadataExporter,
+    Doctrine\ORM\Tools\ConvertDoctrine1Schema,
+    Doctrine\ORM\Tools\EntityGenerator;
 
 /**
  * Command to convert a Doctrine 1 schema to a Doctrine 2 mapping file.
  *
- *
+ * @license http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link    www.doctrine-project.org
  * @since   2.0
+ * @version $Revision$
  * @author  Benjamin Eberlei <kontakt@beberlei.de>
  * @author  Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @author  Jonathan Wage <jonwage@gmail.com>
@@ -95,9 +98,9 @@ class ConvertDoctrine1SchemaCommand extends Console\Command\Command
     protected function configure()
     {
         $this
-            ->setName('orm:convert-d1-schema')
-            ->setDescription('Converts Doctrine 1.X schema into a Doctrine 2.X schema.')
-            ->setDefinition(array(
+        ->setName('orm:convert-d1-schema')
+        ->setDescription('Converts Doctrine 1.X schema into a Doctrine 2.X schema.')
+        ->setDefinition(array(
             new InputArgument(
                 'from-path', InputArgument::REQUIRED, 'The path of Doctrine 1.X schema information.'
             ),
@@ -122,7 +125,7 @@ class ConvertDoctrine1SchemaCommand extends Console\Command\Command
                 'Defines the number of indentation spaces', 4
             )
         ))
-            ->setHelp(<<<EOT
+        ->setHelp(<<<EOT
 Converts Doctrine 1.X schema into a Doctrine 2.X schema.
 EOT
         );
@@ -162,22 +165,22 @@ EOT
         foreach ($fromPaths as &$dirName) {
             $dirName = realpath($dirName);
 
-            if (!file_exists($dirName)) {
+            if ( ! file_exists($dirName)) {
                 throw new \InvalidArgumentException(
                     sprintf("Doctrine 1.X schema directory '<info>%s</info>' does not exist.", $dirName)
                 );
-            } else if (!is_readable($dirName)) {
+            } else if ( ! is_readable($dirName)) {
                 throw new \InvalidArgumentException(
                     sprintf("Doctrine 1.X schema directory '<info>%s</info>' does not have read permissions.", $dirName)
                 );
             }
         }
 
-        if (!file_exists($destPath)) {
+        if ( ! file_exists($destPath)) {
             throw new \InvalidArgumentException(
                 sprintf("Doctrine 2.X mapping destination directory '<info>%s</info>' does not exist.", $destPath)
             );
-        } else if (!is_writable($destPath)) {
+        } else if ( ! is_writable($destPath)) {
             throw new \InvalidArgumentException(
                 sprintf("Doctrine 2.X mapping destination directory '<info>%s</info>' does not have write permissions.", $destPath)
             );

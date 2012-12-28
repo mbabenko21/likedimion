@@ -50,11 +50,8 @@ class Doctrine
         } else {
             $config->setAutoGenerateProxyClasses(false);
         }
-        $evm = new EventManager();
-        $prefix = new TablePrefix($databaseConfig["table_prefix"]);
-        $evm->addEventListener(Events::loadClassMetadata, $prefix);
 
-        $em = EntityManager::create($databaseConfig["database_params"], $config, $evm);
+        $em = EntityManager::create($databaseConfig["database_params"], $config);
         $container->set("entityManager", $em);
         return $container;
     }

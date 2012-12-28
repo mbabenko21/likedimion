@@ -13,14 +13,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Query\Exec;
 
 use Doctrine\DBAL\Connection,
-Doctrine\ORM\Query\AST;
+    Doctrine\ORM\Query\AST;
 
 /**
  * Executes the SQL statements for bulk DQL DELETE statements on classes in
@@ -50,7 +50,6 @@ class MultiTableDeleteExecutor extends AbstractSqlExecutor
         $em = $sqlWalker->getEntityManager();
         $conn = $em->getConnection();
         $platform = $conn->getDatabasePlatform();
-        $quoteStrategy = $em->getConfiguration()->getQuoteStrategy();
 
         $primaryClass = $em->getClassMetadata($AST->deleteClause->abstractSchemaName);
         $primaryDqlAlias = $AST->deleteClause->aliasIdentificationVariable;
@@ -64,7 +63,7 @@ class MultiTableDeleteExecutor extends AbstractSqlExecutor
         $sqlWalker->setSQLTableAlias($primaryClass->getTableName(), 't0', $primaryDqlAlias);
 
         $this->_insertSql = 'INSERT INTO ' . $tempTable . ' (' . $idColumnList . ')'
-            . ' SELECT t0.' . implode(', t0.', $idColumnNames);
+                . ' SELECT t0.' . implode(', t0.', $idColumnNames);
 
         $rangeDecl = new AST\RangeVariableDeclaration($primaryClass->name, $primaryDqlAlias);
         $fromClause = new AST\FromClause(array(new AST\IdentificationVariableDeclaration($rangeDecl, null, array())));
@@ -81,9 +80,9 @@ class MultiTableDeleteExecutor extends AbstractSqlExecutor
         // 3. Create and store DELETE statements
         $classNames = array_merge($primaryClass->parentClasses, array($primaryClass->name), $primaryClass->subClasses);
         foreach (array_reverse($classNames) as $className) {
-            $tableName = $quoteStrategy->getTableName($em->getClassMetadata($className), $platform);
+            $tableName = $em->getClassMetadata($className)->getQuotedTableName($platform);
             $this->_sqlStatements[] = 'DELETE FROM ' . $tableName
-                . ' WHERE (' . $idColumnList . ') IN (' . $idSubselect . ')';
+                    . ' WHERE (' . $idColumnList . ') IN (' . $idSubselect . ')';
         }
 
         // 4. Store DDL for temporary identifier table.
@@ -95,7 +94,7 @@ class MultiTableDeleteExecutor extends AbstractSqlExecutor
             );
         }
         $this->_createTempTableSql = $platform->getCreateTemporaryTableSnippetSQL() . ' ' . $tempTable . ' ('
-            . $platform->getColumnDeclarationListSQL($columnDefinitions) . ')';
+                . $platform->getColumnDeclarationListSQL($columnDefinitions) . ')';
         $this->_dropTempTableSql = $platform->getDropTemporaryTableSQL($tempTable);
     }
 
@@ -109,20 +108,12 @@ class MultiTableDeleteExecutor extends AbstractSqlExecutor
         // Create temporary id table
         $conn->executeUpdate($this->_createTempTableSql);
 
-        try {
-            // Insert identifiers
-            $numDeleted = $conn->executeUpdate($this->_insertSql, $params, $types);
+        // Insert identifiers
+        $numDeleted = $conn->executeUpdate($this->_insertSql, $params, $types);
 
-            // Execute DELETE statements
-            foreach ($this->_sqlStatements as $sql) {
-                $conn->executeUpdate($sql);
-            }
-        } catch (\Exception $exception) {
-            // FAILURE! Drop temporary table to avoid possible collisions
-            $conn->executeUpdate($this->_dropTempTableSql);
-
-            // Re-throw exception
-            throw $exception;
+        // Execute DELETE statements
+        foreach ($this->_sqlStatements as $sql) {
+            $conn->executeUpdate($sql);
         }
 
         // Drop temporary table

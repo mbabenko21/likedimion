@@ -13,14 +13,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Query;
 
 use Doctrine\ORM\Configuration,
-Doctrine\ORM\EntityManager;
+    Doctrine\ORM\EntityManager;
 
 /**
  * Collection class for all the query filters.
@@ -33,7 +33,7 @@ class FilterCollection
     /**
      * A filter object is in CLEAN state when it has no changed parameters.
      */
-    const FILTERS_STATE_CLEAN = 1;
+    const FILTERS_STATE_CLEAN  = 1;
 
     /**
      * A filter object is in DIRTY state when it has changed parameters.

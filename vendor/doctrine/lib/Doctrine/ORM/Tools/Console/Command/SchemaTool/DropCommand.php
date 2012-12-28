@@ -1,5 +1,7 @@
 <?php
 /*
+ *  $Id$
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -13,24 +15,25 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Tools\Console\Command\SchemaTool;
 
 use Symfony\Component\Console\Input\InputArgument,
-Symfony\Component\Console\Input\InputOption,
-Symfony\Component\Console\Input\InputInterface,
-Symfony\Component\Console\Output\OutputInterface,
-Doctrine\ORM\Tools\SchemaTool;
+    Symfony\Component\Console\Input\InputOption,
+    Symfony\Component\Console\Input\InputInterface,
+    Symfony\Component\Console\Output\OutputInterface,
+    Doctrine\ORM\Tools\SchemaTool;
 
 /**
  * Command to drop the database schema for a set of classes based on their mappings.
  *
- *
+ * @license http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link    www.doctrine-project.org
  * @since   2.0
+ * @version $Revision$
  * @author  Benjamin Eberlei <kontakt@beberlei.de>
  * @author  Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @author  Jonathan Wage <jonwage@gmail.com>
@@ -44,11 +47,11 @@ class DropCommand extends AbstractCommand
     protected function configure()
     {
         $this
-            ->setName('orm:schema-tool:drop')
-            ->setDescription(
+        ->setName('orm:schema-tool:drop')
+        ->setDescription(
             'Drop the complete database schema of EntityManager Storage Connection or generate the corresponding SQL output.'
         )
-            ->setDefinition(array(
+        ->setDefinition(array(
             new InputOption(
                 'dump-sql', null, InputOption::VALUE_NONE,
                 'Instead of try to apply generated SQLs into EntityManager Storage Connection, output them.'
@@ -62,7 +65,7 @@ class DropCommand extends AbstractCommand
                 'Instead of using the Class Metadata to detect the database table schema, drop ALL assets that the database contains.'
             ),
         ))
-            ->setHelp(<<<EOT
+        ->setHelp(<<<EOT
 Processes the schema and either drop the database schema of EntityManager Storage Connection or generate the SQL output.
 Beware that the complete database is dropped by this command, even tables that are not relevant to your metadata model.
 EOT

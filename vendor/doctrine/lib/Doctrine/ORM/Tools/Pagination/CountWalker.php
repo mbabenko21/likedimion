@@ -14,10 +14,10 @@
 namespace Doctrine\ORM\Tools\Pagination;
 
 use Doctrine\ORM\Query\TreeWalkerAdapter,
-Doctrine\ORM\Query\AST\SelectStatement,
-Doctrine\ORM\Query\AST\SelectExpression,
-Doctrine\ORM\Query\AST\PathExpression,
-Doctrine\ORM\Query\AST\AggregateExpression;
+    Doctrine\ORM\Query\AST\SelectStatement,
+    Doctrine\ORM\Query\AST\SelectExpression,
+    Doctrine\ORM\Query\AST\PathExpression,
+    Doctrine\ORM\Query\AST\AggregateExpression;
 
 /**
  * Replaces the selectClause of the AST with a COUNT statement
@@ -43,15 +43,12 @@ class CountWalker extends TreeWalkerAdapter
      */
     public function walkSelectStatement(SelectStatement $AST)
     {
-        if ($AST->havingClause) {
-            throw new \RuntimeException('Cannot count query that uses a HAVING clause. Use the output walkers for pagination');
-        }
-
         $rootComponents = array();
-        foreach ($this->_getQueryComponents() as $dqlAlias => $qComp) {
+        foreach ($this->_getQueryComponents() AS $dqlAlias => $qComp) {
             $isParent = array_key_exists('parent', $qComp)
                 && $qComp['parent'] === null
-                && $qComp['nestingLevel'] == 0;
+                && $qComp['nestingLevel'] == 0
+            ;
             if ($isParent) {
                 $rootComponents[] = array($dqlAlias => $qComp);
             }
@@ -62,18 +59,12 @@ class CountWalker extends TreeWalkerAdapter
         $root = reset($rootComponents);
         $parentName = key($root);
         $parent = current($root);
-        $identifierFieldName = $parent['metadata']->getSingleIdentifierFieldName();
-
-        $pathType = PathExpression::TYPE_STATE_FIELD;
-        if (isset($parent['metadata']->associationMappings[$identifierFieldName])) {
-            $pathType = PathExpression::TYPE_SINGLE_VALUED_ASSOCIATION;
-        }
 
         $pathExpression = new PathExpression(
             PathExpression::TYPE_STATE_FIELD | PathExpression::TYPE_SINGLE_VALUED_ASSOCIATION, $parentName,
-            $identifierFieldName
+            $parent['metadata']->getSingleIdentifierFieldName()
         );
-        $pathExpression->type = $pathType;
+        $pathExpression->type = PathExpression::TYPE_STATE_FIELD;
 
         $distinct = $this->_getQuery()->getHint(self::HINT_DISTINCT);
         $AST->selectClause->selectExpressions = array(

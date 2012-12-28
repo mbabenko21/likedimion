@@ -13,18 +13,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Internal\Hydration;
 
 use PDO,
-Doctrine\DBAL\Connection,
-Doctrine\DBAL\Types\Type,
-Doctrine\ORM\EntityManager,
-Doctrine\ORM\Events,
-Doctrine\ORM\Mapping\ClassMetadata;
+    Doctrine\DBAL\Connection,
+    Doctrine\DBAL\Types\Type,
+    Doctrine\ORM\EntityManager,
+    Doctrine\ORM\Events,
+    Doctrine\ORM\Mapping\ClassMetadata;
 
 /**
  * Base class for all hydrators. A hydrator is a class that provides some form
@@ -37,22 +37,22 @@ Doctrine\ORM\Mapping\ClassMetadata;
  */
 abstract class AbstractHydrator
 {
-    /** @var \Doctrine\ORM\Query\ResultSetMapping The ResultSetMapping. */
+    /** @var ResultSetMapping The ResultSetMapping. */
     protected $_rsm;
 
     /** @var EntityManager The EntityManager instance. */
     protected $_em;
 
-    /** @var \Doctrine\DBAL\Platforms\AbstractPlatform The dbms Platform instance */
+    /** @var AbstractPlatform The dbms Platform instance */
     protected $_platform;
 
-    /** @var \Doctrine\ORM\UnitOfWork The UnitOfWork of the associated EntityManager. */
+    /** @var UnitOfWork The UnitOfWork of the associated EntityManager. */
     protected $_uow;
 
     /** @var array The cache used during row-by-row hydration. */
     protected $_cache = array();
 
-    /** @var \Doctrine\DBAL\Driver\Statement The statement that provides the data to hydrate. */
+    /** @var Statement The statement that provides the data to hydrate. */
     protected $_stmt;
 
     /** @var array The query hints. */
@@ -65,9 +65,9 @@ abstract class AbstractHydrator
      */
     public function __construct(EntityManager $em)
     {
-        $this->_em = $em;
+        $this->_em       = $em;
         $this->_platform = $em->getConnection()->getDatabasePlatform();
-        $this->_uow = $em->getUnitOfWork();
+        $this->_uow      = $em->getUnitOfWork();
     }
 
     /**
@@ -80,8 +80,8 @@ abstract class AbstractHydrator
      */
     public function iterate($stmt, $resultSetMapping, array $hints = array())
     {
-        $this->_stmt = $stmt;
-        $this->_rsm = $resultSetMapping;
+        $this->_stmt  = $stmt;
+        $this->_rsm   = $resultSetMapping;
         $this->_hints = $hints;
 
         $evm = $this->_em->getEventManager();
@@ -97,13 +97,12 @@ abstract class AbstractHydrator
      *
      * @param object $stmt
      * @param object $resultSetMapping
-     * @param array $hints
      * @return mixed
      */
     public function hydrateAll($stmt, $resultSetMapping, array $hints = array())
     {
-        $this->_stmt = $stmt;
-        $this->_rsm = $resultSetMapping;
+        $this->_stmt  = $stmt;
+        $this->_rsm   = $resultSetMapping;
         $this->_hints = $hints;
 
         $this->prepare();
@@ -125,7 +124,7 @@ abstract class AbstractHydrator
     {
         $row = $this->_stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$row) {
+        if ( ! $row) {
             $this->cleanup();
 
             return false;
@@ -143,8 +142,7 @@ abstract class AbstractHydrator
      * through {@link hydrateAll} or {@link iterate()}.
      */
     protected function prepare()
-    {
-    }
+    {}
 
     /**
      * Excutes one-time cleanup tasks at the end of a hydration that was initiated
@@ -200,33 +198,33 @@ abstract class AbstractHydrator
 
         foreach ($data as $key => $value) {
             // Parse each column name only once. Cache the results.
-            if (!isset($cache[$key])) {
+            if ( ! isset($cache[$key])) {
                 switch (true) {
                     // NOTE: Most of the times it's a field mapping, so keep it first!!!
                     case (isset($this->_rsm->fieldMappings[$key])):
-                        $fieldName = $this->_rsm->fieldMappings[$key];
+                        $fieldName     = $this->_rsm->fieldMappings[$key];
                         $classMetadata = $this->_em->getClassMetadata($this->_rsm->declaringClasses[$key]);
 
-                        $cache[$key]['fieldName'] = $fieldName;
-                        $cache[$key]['type'] = Type::getType($classMetadata->fieldMappings[$fieldName]['type']);
+                        $cache[$key]['fieldName']    = $fieldName;
+                        $cache[$key]['type']         = Type::getType($classMetadata->fieldMappings[$fieldName]['type']);
                         $cache[$key]['isIdentifier'] = $classMetadata->isIdentifier($fieldName);
-                        $cache[$key]['dqlAlias'] = $this->_rsm->columnOwnerMap[$key];
+                        $cache[$key]['dqlAlias']     = $this->_rsm->columnOwnerMap[$key];
                         break;
 
                     case (isset($this->_rsm->scalarMappings[$key])):
                         $cache[$key]['fieldName'] = $this->_rsm->scalarMappings[$key];
-                        $cache[$key]['type'] = Type::getType($this->_rsm->typeMappings[$key]);
-                        $cache[$key]['isScalar'] = true;
+                        $cache[$key]['type']      = Type::getType($this->_rsm->typeMappings[$key]);
+                        $cache[$key]['isScalar']  = true;
                         break;
 
                     case (isset($this->_rsm->metaMappings[$key])):
                         // Meta column (has meaning in relational schema only, i.e. foreign keys or discriminator columns).
-                        $fieldName = $this->_rsm->metaMappings[$key];
+                        $fieldName     = $this->_rsm->metaMappings[$key];
                         $classMetadata = $this->_em->getClassMetadata($this->_rsm->aliasMap[$this->_rsm->columnOwnerMap[$key]]);
 
                         $cache[$key]['isMetaColumn'] = true;
-                        $cache[$key]['fieldName'] = $fieldName;
-                        $cache[$key]['dqlAlias'] = $this->_rsm->columnOwnerMap[$key];
+                        $cache[$key]['fieldName']    = $fieldName;
+                        $cache[$key]['dqlAlias']     = $this->_rsm->columnOwnerMap[$key];
                         $cache[$key]['isIdentifier'] = isset($this->_rsm->isIdentifierColumn[$cache[$key]['dqlAlias']][$key]);
                         break;
 
@@ -252,7 +250,7 @@ abstract class AbstractHydrator
             }
 
             if (isset($cache[$key]['isMetaColumn'])) {
-                if (!isset($rowData[$dqlAlias][$cache[$key]['fieldName']]) && $value !== null) {
+                if ( ! isset($rowData[$dqlAlias][$cache[$key]['fieldName']]) && $value !== null) {
                     $rowData[$dqlAlias][$cache[$key]['fieldName']] = $value;
                     if ($cache[$key]['isIdentifier']) {
                         $nonemptyComponents[$dqlAlias] = true;
@@ -271,7 +269,7 @@ abstract class AbstractHydrator
 
             $rowData[$dqlAlias][$cache[$key]['fieldName']] = $cache[$key]['type']->convertToPHPValue($value, $this->_platform);
 
-            if (!isset($nonemptyComponents[$dqlAlias]) && $value !== null) {
+            if ( ! isset($nonemptyComponents[$dqlAlias]) && $value !== null) {
                 $nonemptyComponents[$dqlAlias] = true;
             }
         }
@@ -298,28 +296,28 @@ abstract class AbstractHydrator
 
         foreach ($data as $key => $value) {
             // Parse each column name only once. Cache the results.
-            if (!isset($cache[$key])) {
+            if ( ! isset($cache[$key])) {
                 switch (true) {
                     // NOTE: During scalar hydration, most of the times it's a scalar mapping, keep it first!!!
                     case (isset($this->_rsm->scalarMappings[$key])):
                         $cache[$key]['fieldName'] = $this->_rsm->scalarMappings[$key];
-                        $cache[$key]['isScalar'] = true;
+                        $cache[$key]['isScalar']  = true;
                         break;
 
                     case (isset($this->_rsm->fieldMappings[$key])):
-                        $fieldName = $this->_rsm->fieldMappings[$key];
+                        $fieldName     = $this->_rsm->fieldMappings[$key];
                         $classMetadata = $this->_em->getClassMetadata($this->_rsm->declaringClasses[$key]);
 
                         $cache[$key]['fieldName'] = $fieldName;
-                        $cache[$key]['type'] = Type::getType($classMetadata->fieldMappings[$fieldName]['type']);
-                        $cache[$key]['dqlAlias'] = $this->_rsm->columnOwnerMap[$key];
+                        $cache[$key]['type']      = Type::getType($classMetadata->fieldMappings[$fieldName]['type']);
+                        $cache[$key]['dqlAlias']  = $this->_rsm->columnOwnerMap[$key];
                         break;
 
                     case (isset($this->_rsm->metaMappings[$key])):
                         // Meta column (has meaning in relational schema only, i.e. foreign keys or discriminator columns).
                         $cache[$key]['isMetaColumn'] = true;
-                        $cache[$key]['fieldName'] = $this->_rsm->metaMappings[$key];
-                        $cache[$key]['dqlAlias'] = $this->_rsm->columnOwnerMap[$key];
+                        $cache[$key]['fieldName']    = $this->_rsm->metaMappings[$key];
+                        $cache[$key]['dqlAlias']     = $this->_rsm->columnOwnerMap[$key];
                         break;
 
                     default:

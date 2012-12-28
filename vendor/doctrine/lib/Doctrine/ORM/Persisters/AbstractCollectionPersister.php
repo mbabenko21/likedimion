@@ -13,14 +13,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Persisters;
 
 use Doctrine\ORM\EntityManager,
-Doctrine\ORM\PersistentCollection;
+    Doctrine\ORM\PersistentCollection;
 
 /**
  * Base class for all collection persisters.
@@ -46,20 +46,6 @@ abstract class AbstractCollectionPersister
     protected $_uow;
 
     /**
-     * The database platform.
-     *
-     * @var \Doctrine\DBAL\Platforms\AbstractPlatform
-     */
-    protected $platform;
-
-    /**
-     * The quote strategy.
-     *
-     * @var \Doctrine\ORM\Mapping\QuoteStrategy
-     */
-    protected $quoteStrategy;
-
-    /**
      * Initializes a new instance of a class derived from AbstractCollectionPersister.
      *
      * @param \Doctrine\ORM\EntityManager $em
@@ -69,8 +55,6 @@ abstract class AbstractCollectionPersister
         $this->_em = $em;
         $this->_uow = $em->getUnitOfWork();
         $this->_conn = $em->getConnection();
-        $this->platform = $this->_conn->getDatabasePlatform();
-        $this->quoteStrategy = $em->getConfiguration()->getQuoteStrategy();
     }
 
     /**
@@ -82,7 +66,7 @@ abstract class AbstractCollectionPersister
     {
         $mapping = $coll->getMapping();
 
-        if (!$mapping['isOwningSide']) {
+        if ( ! $mapping['isOwningSide']) {
             return; // ignore inverse side
         }
 
@@ -115,7 +99,7 @@ abstract class AbstractCollectionPersister
     {
         $mapping = $coll->getMapping();
 
-        if (!$mapping['isOwningSide']) {
+        if ( ! $mapping['isOwningSide']) {
             return; // ignore inverse side
         }
 

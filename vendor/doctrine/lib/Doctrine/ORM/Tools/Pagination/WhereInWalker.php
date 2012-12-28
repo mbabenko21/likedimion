@@ -18,18 +18,18 @@
 namespace Doctrine\ORM\Tools\Pagination;
 
 use Doctrine\ORM\Query\AST\ArithmeticExpression,
-Doctrine\ORM\Query\AST\SimpleArithmeticExpression,
-Doctrine\ORM\Query\TreeWalkerAdapter,
-Doctrine\ORM\Query\AST\SelectStatement,
-Doctrine\ORM\Query\AST\PathExpression,
-Doctrine\ORM\Query\AST\InExpression,
-Doctrine\ORM\Query\AST\NullComparisonExpression,
-Doctrine\ORM\Query\AST\InputParameter,
-Doctrine\ORM\Query\AST\ConditionalPrimary,
-Doctrine\ORM\Query\AST\ConditionalTerm,
-Doctrine\ORM\Query\AST\ConditionalExpression,
-Doctrine\ORM\Query\AST\ConditionalFactor,
-Doctrine\ORM\Query\AST\WhereClause;
+    Doctrine\ORM\Query\AST\SimpleArithmeticExpression,
+    Doctrine\ORM\Query\TreeWalkerAdapter,
+    Doctrine\ORM\Query\AST\SelectStatement,
+    Doctrine\ORM\Query\AST\PathExpression,
+    Doctrine\ORM\Query\AST\InExpression,
+    Doctrine\ORM\Query\AST\NullComparisonExpression,
+    Doctrine\ORM\Query\AST\InputParameter,
+    Doctrine\ORM\Query\AST\ConditionalPrimary,
+    Doctrine\ORM\Query\AST\ConditionalTerm,
+    Doctrine\ORM\Query\AST\ConditionalExpression,
+    Doctrine\ORM\Query\AST\ConditionalFactor,
+    Doctrine\ORM\Query\AST\WhereClause;
 
 /**
  * Replaces the whereClause of the AST with a WHERE id IN (:foo_1, :foo_2) equivalent
@@ -69,10 +69,11 @@ class WhereInWalker extends TreeWalkerAdapter
     public function walkSelectStatement(SelectStatement $AST)
     {
         $rootComponents = array();
-        foreach ($this->_getQueryComponents() as $dqlAlias => $qComp) {
+        foreach ($this->_getQueryComponents() AS $dqlAlias => $qComp) {
             $isParent = array_key_exists('parent', $qComp)
                 && $qComp['parent'] === null
-                && $qComp['nestingLevel'] == 0;
+                && $qComp['nestingLevel'] == 0
+            ;
             if ($isParent) {
                 $rootComponents[] = array($dqlAlias => $qComp);
             }
@@ -83,15 +84,11 @@ class WhereInWalker extends TreeWalkerAdapter
         $root = reset($rootComponents);
         $parentName = key($root);
         $parent = current($root);
-        $identifierFieldName = $parent['metadata']->getSingleIdentifierFieldName();
 
-        $pathType = PathExpression::TYPE_STATE_FIELD;
-        if (isset($parent['metadata']->associationMappings[$identifierFieldName])) {
-            $pathType = PathExpression::TYPE_SINGLE_VALUED_ASSOCIATION;
-        }
-
-        $pathExpression = new PathExpression(PathExpression::TYPE_STATE_FIELD | PathExpression::TYPE_SINGLE_VALUED_ASSOCIATION, $parentName, $identifierFieldName);
-        $pathExpression->type = $pathType;
+        $pathExpression = new PathExpression(
+            PathExpression::TYPE_STATE_FIELD, $parentName, $parent['metadata']->getSingleIdentifierFieldName()
+        );
+        $pathExpression->type = PathExpression::TYPE_STATE_FIELD;
 
         $count = $this->_getQuery()->getHint(self::HINT_PAGINATOR_ID_COUNT);
 
@@ -101,8 +98,11 @@ class WhereInWalker extends TreeWalkerAdapter
                 array($pathExpression)
             );
             $expression = new InExpression($arithmeticExpression);
-            $expression->literals[] = new InputParameter(":" . self::PAGINATOR_ID_ALIAS);
+            $ns = self::PAGINATOR_ID_ALIAS;
 
+            for ($i = 1; $i <= $count; $i++) {
+                $expression->literals[] = new InputParameter(":{$ns}_$i");
+            }
         } else {
             $expression = new NullComparisonExpression($pathExpression);
             $expression->not = false;
@@ -120,9 +120,7 @@ class WhereInWalker extends TreeWalkerAdapter
                         $conditionalPrimary
                     ))
                 ));
-            } elseif ($AST->whereClause->conditionalExpression instanceof ConditionalExpression
-                || $AST->whereClause->conditionalExpression instanceof ConditionalFactor
-            ) {
+            } elseif ($AST->whereClause->conditionalExpression instanceof ConditionalExpression) {
                 $tmpPrimary = new ConditionalPrimary;
                 $tmpPrimary->conditionalExpression = $AST->whereClause->conditionalExpression;
                 $AST->whereClause->conditionalExpression = new ConditionalTerm(array(

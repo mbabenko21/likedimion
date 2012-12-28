@@ -13,7 +13,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
@@ -44,8 +44,8 @@ class Autoloader
             throw ProxyException::notProxyClass($className, $proxyNamespace);
         }
 
-        $className = str_replace('\\', '', substr($className, strlen($proxyNamespace) + 1));
-        return $proxyDir . DIRECTORY_SEPARATOR . $className . '.php';
+        $className = str_replace('\\', '', substr($className, strlen($proxyNamespace) +1));
+        return $proxyDir . DIRECTORY_SEPARATOR . $className.'.php';
     }
 
     /**
@@ -60,12 +60,11 @@ class Autoloader
     static public function register($proxyDir, $proxyNamespace, \Closure $notFoundCallback = null)
     {
         $proxyNamespace = ltrim($proxyNamespace, "\\");
-        $autoloader = function($className) use ($proxyDir, $proxyNamespace, $notFoundCallback)
-        {
+        $autoloader = function($className) use ($proxyDir, $proxyNamespace, $notFoundCallback) {
             if (0 === strpos($className, $proxyNamespace)) {
                 $file = Autoloader::resolveFile($proxyDir, $proxyNamespace, $className);
 
-                if ($notFoundCallback && !file_exists($file)) {
+                if ($notFoundCallback && ! file_exists($file)) {
                     $notFoundCallback($proxyDir, $proxyNamespace, $className);
                 }
 

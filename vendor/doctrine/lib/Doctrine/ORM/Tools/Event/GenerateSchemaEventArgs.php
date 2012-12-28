@@ -1,5 +1,7 @@
 <?php
 /*
+ *  $Id$
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -13,9 +15,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
- */
+*/
 
 namespace Doctrine\ORM\Tools\Event;
 
@@ -28,6 +30,7 @@ use Doctrine\ORM\EntityManager;
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.doctrine-project.com
  * @since       1.0
+ * @version     $Revision$
  * @author      Benjamin Eberlei <kontakt@beberlei.de>
  */
 class GenerateSchemaEventArgs extends \Doctrine\Common\EventArgs
@@ -49,16 +52,14 @@ class GenerateSchemaEventArgs extends \Doctrine\Common\EventArgs
     /**
      * @return EntityManager
      */
-    public function getEntityManager()
-    {
+    public function getEntityManager() {
         return $this->_em;
     }
 
     /**
      * @return Schema
      */
-    public function getSchema()
-    {
+    public function getSchema() {
         return $this->_schema;
     }
 }

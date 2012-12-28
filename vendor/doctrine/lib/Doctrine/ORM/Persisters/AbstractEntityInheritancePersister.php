@@ -13,14 +13,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Persisters;
 
 use Doctrine\ORM\Mapping\ClassMetadata,
-Doctrine\DBAL\Types\Type;
+    Doctrine\DBAL\Types\Type;
 
 /**
  * Base class for entity persisters that implement a certain inheritance mapping strategy.
@@ -61,7 +61,7 @@ abstract class AbstractEntityInheritancePersister extends BasicEntityPersister
     protected function _getSelectColumnSQL($field, ClassMetadata $class, $alias = 'r')
     {
         $columnName = $class->columnNames[$field];
-        $sql = $this->_getSQLTableAlias($class->name, $alias == 'r' ? '' : $alias) . '.' . $this->quoteStrategy->getColumnName($field, $class, $this->_platform);
+        $sql = $this->_getSQLTableAlias($class->name, $alias == 'r' ? '' : $alias) . '.' . $class->getQuotedColumnName($field, $this->_platform);
         $columnAlias = $this->getSQLColumnAlias($columnName);
         $this->_rsm->addFieldResult($alias, $columnAlias, $field, $class->name);
 
