@@ -527,7 +527,7 @@ span.counter {
 .life_bar{
     position: relative;
     background-color: rgba(174, 0, 0, 0.34);
-    width: 25%;
+    width: 200px;
     height: 10px;
     border: 1px solid #ae0000;
     border-radius: 4px;
@@ -536,7 +536,7 @@ span.counter {
 .mana_bar{
     background-color: rgba(0, 82, 175, 0.34);
     position: relative;
-    width: 25%;
+    width: 200px;
     height: 10px;
     border: 1px solid #0052af;
     border-radius: 4px;
@@ -589,7 +589,7 @@ span.counter {
 .exp_bar{
     position: relative;
     background-color: rgba(124, 33, 33, 0.34);
-    width: 25%;
+    width: 200px;
     height: 10px;
     border: 1px solid rgba(124, 33, 33, 0.86);
     border-radius: 4px;

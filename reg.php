@@ -105,6 +105,8 @@ if (empty($_POST["reg_button"])) {
                 $baseParams->strenge = 1;
                 $baseParams->dexterity = 2;
                 $baseParams->intelligence = 1;
+                $baseParams->regeneration = 1;
+                $baseParams->meditation = 1;
                 $baseParams->life = 1;
                 $baseParams->energy = 1;
                 $char->setBaseParams($baseParams);
