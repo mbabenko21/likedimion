@@ -13,7 +13,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
@@ -171,8 +171,8 @@ class ResultSetMapping
     {
         $found = false;
 
-        foreach ($this->fieldMappings as $columnName => $columnFieldName) {
-            if (!($columnFieldName === $fieldName && $this->columnOwnerMap[$columnName] === $alias)) continue;
+        foreach ($this->fieldMappings AS $columnName => $columnFieldName) {
+            if ( ! ($columnFieldName === $fieldName && $this->columnOwnerMap[$columnName] === $alias)) continue;
 
             $this->addIndexByColumn($alias, $columnName);
             $found = true;
@@ -269,9 +269,9 @@ class ResultSetMapping
         // column name => alias of owner
         $this->columnOwnerMap[$columnName] = $alias;
         // field name => class name of declaring class
-        $this->declaringClasses[$columnName] = $declaringClass ? : $this->aliasMap[$alias];
+        $this->declaringClasses[$columnName] = $declaringClass ?: $this->aliasMap[$alias];
 
-        if (!$this->isMixed && $this->scalarMappings) {
+        if ( ! $this->isMixed && $this->scalarMappings) {
             $this->isMixed = true;
         }
 
@@ -290,9 +290,9 @@ class ResultSetMapping
      */
     public function addJoinedEntityResult($class, $alias, $parentAlias, $relation)
     {
-        $this->aliasMap[$alias] = $class;
+        $this->aliasMap[$alias]       = $class;
         $this->parentAliasMap[$alias] = $parentAlias;
-        $this->relationMap[$alias] = $relation;
+        $this->relationMap[$alias]    = $relation;
 
         return $this;
     }
@@ -308,12 +308,12 @@ class ResultSetMapping
      *
      * @todo Rename: addScalar
      */
-    public function addScalarResult($columnName, $alias, $type = 'string')
+    public function addScalarResult($columnName, $alias, $type = null)
     {
         $this->scalarMappings[$columnName] = $alias;
-        $this->typeMappings[$columnName] = $type;
+        $this->typeMappings[$columnName]   = $type ?: 'string';
 
-        if (!$this->isMixed && $this->fieldMappings) {
+        if ( ! $this->isMixed && $this->fieldMappings) {
             $this->isMixed = true;
         }
 

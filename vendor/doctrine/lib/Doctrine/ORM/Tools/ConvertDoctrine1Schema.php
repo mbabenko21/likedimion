@@ -1,5 +1,7 @@
 <?php
 /*
+ *  $Id$
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -13,22 +15,23 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Tools;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo,
-Doctrine\ORM\Tools\Export\Driver\AbstractExporter,
-Doctrine\Common\Util\Inflector;
+    Doctrine\ORM\Tools\Export\Driver\AbstractExporter,
+    Doctrine\Common\Util\Inflector;
 
 /**
  * Class to help with converting Doctrine 1 schema files to Doctrine 2 mapping files
  *
- *
+ * @license http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link    www.doctrine-project.org
  * @since   2.0
+ * @version $Revision$
  * @author  Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @author  Jonathan Wage <jonwage@gmail.com>
  * @author  Roman Borschel <roman@code-factory.org>
@@ -51,7 +54,7 @@ class ConvertDoctrine1Schema
      */
     public function __construct($from)
     {
-        $this->_from = (array)$from;
+        $this->_from = (array) $from;
     }
 
     /**
@@ -67,10 +70,10 @@ class ConvertDoctrine1Schema
             if (is_dir($path)) {
                 $files = glob($path . '/*.yml');
                 foreach ($files as $file) {
-                    $schema = array_merge($schema, (array)\Symfony\Component\Yaml\Yaml::parse($file));
+                    $schema = array_merge($schema, (array) \Symfony\Component\Yaml\Yaml::parse($file));
                 }
             } else {
-                $schema = array_merge($schema, (array)\Symfony\Component\Yaml\Yaml::parse($path));
+                $schema = array_merge($schema, (array) \Symfony\Component\Yaml\Yaml::parse($path));
             }
         }
 
@@ -122,7 +125,7 @@ class ConvertDoctrine1Schema
             }
         }
 
-        if (!$id) {
+        if ( ! $id) {
             $fieldMapping = array(
                 'fieldName' => 'id',
                 'columnName' => 'id',
@@ -141,7 +144,7 @@ class ConvertDoctrine1Schema
             $column = array();
             $column['type'] = $string;
         }
-        if (!isset($column['name'])) {
+        if ( ! isset($column['name'])) {
             $column['name'] = $name;
         }
         // check if a column alias was used (column_name as field_name)
@@ -159,7 +162,7 @@ class ConvertDoctrine1Schema
         if (isset($this->_legacyTypeMap[$column['type']])) {
             $column['type'] = $this->_legacyTypeMap[$column['type']];
         }
-        if (!\Doctrine\DBAL\Types\Type::hasType($column['type'])) {
+        if ( ! \Doctrine\DBAL\Types\Type::hasType($column['type'])) {
             throw ToolsException::couldNotMapDoctrine1Type($column['type']);
         }
 
@@ -187,7 +190,7 @@ class ConvertDoctrine1Schema
         } else if (isset($column['sequence'])) {
             $metadata->setIdGeneratorType(ClassMetadataInfo::GENERATOR_TYPE_SEQUENCE);
             $definition = array(
-                'sequenceName' => is_array($column['sequence']) ? $column['sequence']['name'] : $column['sequence']
+                'sequenceName' => is_array($column['sequence']) ? $column['sequence']['name']:$column['sequence']
             );
             if (isset($column['sequence']['size'])) {
                 $definition['allocationSize'] = $column['sequence']['size'];
@@ -218,19 +221,19 @@ class ConvertDoctrine1Schema
     {
         if (isset($model['relations']) && $model['relations']) {
             foreach ($model['relations'] as $name => $relation) {
-                if (!isset($relation['alias'])) {
+                if ( ! isset($relation['alias'])) {
                     $relation['alias'] = $name;
                 }
-                if (!isset($relation['class'])) {
+                if ( ! isset($relation['class'])) {
                     $relation['class'] = $name;
                 }
-                if (!isset($relation['local'])) {
+                if ( ! isset($relation['local'])) {
                     $relation['local'] = Inflector::tableize($relation['class']);
                 }
-                if (!isset($relation['foreign'])) {
+                if ( ! isset($relation['foreign'])) {
                     $relation['foreign'] = 'id';
                 }
-                if (!isset($relation['foreignAlias'])) {
+                if ( ! isset($relation['foreignAlias'])) {
                     $relation['foreignAlias'] = $className;
                 }
 

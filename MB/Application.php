@@ -8,6 +8,7 @@ namespace MB;
  * To change this template use File | Settings | File Templates.
  */
 use MB\Loader\Providers\ItemYamlLoader;
+use MB\Configurations\ApplicationConfiguration;
 use MB\I\EventsStorage;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use MB\Core\Kernel\Services;
@@ -23,7 +24,7 @@ class Application
     {
         $container = new ContainerBuilder();
         $app = new YamlLoader(ROOT_DIR . "/Resources/config/application.yml");
-        $appConfig = new \MB\Configurations\ApplicationConfiguration($app);
+        $appConfig = new ApplicationConfiguration($app);
         Container::register("app_config", $appConfig);
         $container->set("app_config", $appConfig);
         $container = Doctrine::init($container);

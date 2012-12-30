@@ -13,7 +13,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
@@ -27,6 +27,4 @@ use Doctrine\Common\Persistence\Proxy as BaseProxy;
  * @author Roman Borschel <roman@code-factory.org>
  * @since 2.0
  */
-interface Proxy extends BaseProxy
-{
-}
+interface Proxy extends BaseProxy {}

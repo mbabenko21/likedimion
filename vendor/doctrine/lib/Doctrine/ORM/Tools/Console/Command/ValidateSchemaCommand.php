@@ -1,5 +1,7 @@
 <?php
 /*
+ *  $Id$
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -13,15 +15,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
- */
+*/
 
 namespace Doctrine\ORM\Tools\Console\Command;
 
 use Symfony\Component\Console\Input\InputArgument,
-Symfony\Component\Console\Input\InputOption,
-Symfony\Component\Console;
+    Symfony\Component\Console\Input\InputOption,
+    Symfony\Component\Console;
 
 /**
  * Validate that the current mapping is valid
@@ -29,6 +31,7 @@ Symfony\Component\Console;
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.doctrine-project.com
  * @since       1.0
+ * @version     $Revision$
  * @author      Benjamin Eberlei <kontakt@beberlei.de>
  * @author      Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @author      Jonathan Wage <jonwage@gmail.com>
@@ -42,9 +45,9 @@ class ValidateSchemaCommand extends Console\Command\Command
     protected function configure()
     {
         $this
-            ->setName('orm:validate-schema')
-            ->setDescription('Validate the mapping files.')
-            ->setHelp(<<<EOT
+        ->setName('orm:validate-schema')
+        ->setDescription('Validate the mapping files.')
+        ->setHelp(<<<EOT
 'Validate that the mapping files are correct and in sync with the database.'
 EOT
         );
@@ -62,9 +65,9 @@ EOT
 
         $exit = 0;
         if ($errors) {
-            foreach ($errors as $className => $errorMessages) {
+            foreach ($errors AS $className => $errorMessages) {
                 $output->write("<error>[Mapping]  FAIL - The entity-class '" . $className . "' mapping is invalid:</error>\n");
-                foreach ($errorMessages as $errorMessage) {
+                foreach ($errorMessages AS $errorMessage) {
                     $output->write('* ' . $errorMessage . "\n");
                 }
                 $output->write("\n");

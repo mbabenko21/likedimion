@@ -13,18 +13,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Internal\Hydration;
 
 use \PDO,
-Doctrine\DBAL\Types\Type,
-Doctrine\ORM\Mapping\ClassMetadata,
-Doctrine\ORM\Event\LifecycleEventArgs,
-Doctrine\ORM\Events,
-Doctrine\ORM\Query;
+    Doctrine\DBAL\Types\Type,
+    Doctrine\ORM\Mapping\ClassMetadata,
+    Doctrine\ORM\Event\LifecycleEventArgs,
+    Doctrine\ORM\Events,
+    Doctrine\ORM\Query;
 
 class SimpleObjectHydrator extends AbstractHydrator
 {
@@ -75,7 +75,7 @@ class SimpleObjectHydrator extends AbstractHydrator
             return;
         }
 
-        foreach ($this->_rsm->declaringClasses as $column => $class) {
+        foreach ($this->_rsm->declaringClasses AS $column => $class) {
             $this->declaringClasses[$column] = $this->_em->getClassMetadata($class);
         }
     }
@@ -86,15 +86,11 @@ class SimpleObjectHydrator extends AbstractHydrator
     protected function hydrateRowData(array $sqlResult, array &$cache, array &$result)
     {
         $entityName = $this->class->name;
-        $data = array();
+        $data       = array();
 
         // We need to find the correct entity class name if we have inheritance in resultset
         if ($this->class->inheritanceType !== ClassMetadata::INHERITANCE_TYPE_NONE) {
             $discrColumnName = $this->_platform->getSQLResultCasing($this->class->discriminatorColumn['name']);
-
-            if (!isset($sqlResult[$discrColumnName])) {
-                throw HydrationException::missingDiscriminatorColumn($entityName, $discrColumnName, key($this->_rsm->aliasMap));
-            }
 
             if ($sqlResult[$discrColumnName] === '') {
                 throw HydrationException::emptyDiscriminatorValue(key($this->_rsm->aliasMap));
@@ -107,7 +103,7 @@ class SimpleObjectHydrator extends AbstractHydrator
 
         foreach ($sqlResult as $column => $value) {
             // Hydrate column information if not yet present
-            if (!isset($cache[$column])) {
+            if ( ! isset($cache[$column])) {
                 if (($info = $this->hydrateColumnInfo($entityName, $column)) === null) {
                     continue;
                 }
@@ -117,12 +113,12 @@ class SimpleObjectHydrator extends AbstractHydrator
 
             // Convert field to a valid PHP value
             if (isset($cache[$column]['field'])) {
-                $type = Type::getType($cache[$column]['class']->fieldMappings[$cache[$column]['name']]['type']);
+                $type  = Type::getType($cache[$column]['class']->fieldMappings[$cache[$column]['name']]['type']);
                 $value = $type->convertToPHPValue($value, $this->_platform);
             }
 
             // Prevent overwrite in case of inherit classes using same property name (See AbstractHydrator)
-            if (isset($cache[$column]) && (!isset($data[$cache[$column]['name']]) || $value !== null)) {
+            if (isset($cache[$column]) && ( ! isset($data[$cache[$column]['name']]) || $value !== null)) {
                 $data[$cache[$column]['name']] = $value;
             }
         }
@@ -131,7 +127,7 @@ class SimpleObjectHydrator extends AbstractHydrator
             $this->registerManaged($this->class, $this->_hints[Query::HINT_REFRESH_ENTITY], $data);
         }
 
-        $uow = $this->_em->getUnitOfWork();
+        $uow    = $this->_em->getUnitOfWork();
         $entity = $uow->createEntity($entityName, $data, $this->_hints);
 
         $result[] = $entity;
@@ -154,13 +150,13 @@ class SimpleObjectHydrator extends AbstractHydrator
                     : $this->class;
 
                 // If class is not part of the inheritance, ignore
-                if (!($class->name === $entityName || is_subclass_of($entityName, $class->name))) {
+                if ( ! ($class->name === $entityName || is_subclass_of($entityName, $class->name))) {
                     return null;
                 }
 
                 return array(
                     'class' => $class,
-                    'name' => $this->_rsm->fieldMappings[$column],
+                    'name'  => $this->_rsm->fieldMappings[$column],
                     'field' => true,
                 );
 
@@ -170,7 +166,7 @@ class SimpleObjectHydrator extends AbstractHydrator
                     : $this->class;
 
                 // If class is not self referencing, ignore
-                if (!($class === $entityName || is_subclass_of($entityName, $class))) {
+                if ( ! ($class === $entityName || is_subclass_of($entityName, $class))) {
                     return null;
                 }
 

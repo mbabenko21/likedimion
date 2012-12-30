@@ -13,7 +13,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
@@ -22,7 +22,7 @@ namespace Doctrine\ORM\Query;
 /**
  * This class is used to generate DQL expressions via a set of PHP static functions
  *
- *
+ * @license http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link    www.doctrine-project.org
  * @since   2.0
  * @author  Guilherme Blanco <guilhermeblanco@hotmail.com>
@@ -45,7 +45,7 @@ class Expr
      * @param \Doctrine\ORM\Query\Expr\Comparison |
      *          \Doctrine\ORM\Query\Expr\Func |
      *          \Doctrine\ORM\Query\Expr\Orx
-     *               $x Optional clause. Defaults = null, but requires at least one defined when converting to string.
+    *               $x Optional clause. Defaults = null, but requires at least one defined when converting to string.
      * @return Expr\Andx
      */
     public function andX($x = null)
@@ -418,12 +418,12 @@ class Expr
     {
         if (is_array($y)) {
             foreach ($y as &$literal) {
-                if (!($literal instanceof Expr\Literal)) {
+                if ( ! ($literal instanceof Expr\Literal)) {
                     $literal = $this->_quoteLiteral($literal);
                 }
             }
         }
-        return new Expr\Func($x . ' IN', (array)$y);
+        return new Expr\Func($x . ' IN', (array) $y);
     }
 
     /**
@@ -437,12 +437,12 @@ class Expr
     {
         if (is_array($y)) {
             foreach ($y as &$literal) {
-                if (!($literal instanceof Expr\Literal)) {
+                if ( ! ($literal instanceof Expr\Literal)) {
                     $literal = $this->_quoteLiteral($literal);
                 }
             }
         }
-        return new Expr\Func($x . ' NOT IN', (array)$y);
+        return new Expr\Func($x . ' NOT IN', (array) $y);
     }
 
     /**
@@ -561,7 +561,7 @@ class Expr
     private function _quoteLiteral($literal)
     {
         if (is_numeric($literal) && !is_string($literal)) {
-            return (string)$literal;
+            return (string) $literal;
         } else if (is_bool($literal)) {
             return $literal ? "true" : "false";
         } else {

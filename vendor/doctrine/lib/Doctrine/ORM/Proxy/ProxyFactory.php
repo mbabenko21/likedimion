@@ -13,15 +13,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Proxy;
 
 use Doctrine\ORM\EntityManager,
-Doctrine\ORM\Mapping\ClassMetadata,
-Doctrine\Common\Util\ClassUtils;
+    Doctrine\ORM\Mapping\ClassMetadata,
+    Doctrine\Common\Util\ClassUtils;
 
 /**
  * This factory is used to create proxy objects for entities at runtime.
@@ -60,10 +60,10 @@ class ProxyFactory
      */
     public function __construct(EntityManager $em, $proxyDir, $proxyNs, $autoGenerate = false)
     {
-        if (!$proxyDir) {
+        if ( ! $proxyDir) {
             throw ProxyException::proxyDirectoryRequired();
         }
-        if (!$proxyNs) {
+        if ( ! $proxyNs) {
             throw ProxyException::proxyNamespaceRequired();
         }
         $this->_em = $em;
@@ -84,12 +84,16 @@ class ProxyFactory
     {
         $fqn = ClassUtils::generateProxyClassName($className, $this->_proxyNamespace);
 
-        if (!class_exists($fqn, false)) {
+        if (! class_exists($fqn, false)) {
             $fileName = $this->getProxyFileName($className);
             if ($this->_autoGenerate) {
                 $this->_generateProxyClass($this->_em->getClassMetadata($className), $fileName, self::$_proxyClassTemplate);
             }
             require $fileName;
+        }
+
+        if ( ! $this->_em->getMetadataFactory()->hasMetadataFor($fqn)) {
+            $this->_em->getMetadataFactory()->setMetadataFor($fqn, $this->_em->getClassMetadata($className));
         }
 
         $entityPersister = $this->_em->getUnitOfWork()->getEntityPersister($className);
@@ -108,7 +112,7 @@ class ProxyFactory
      */
     private function getProxyFileName($className, $baseDir = null)
     {
-        $proxyDir = $baseDir ? : $this->_proxyDir;
+        $proxyDir = $baseDir ?: $this->_proxyDir;
 
         return $proxyDir . DIRECTORY_SEPARATOR . '__CG__' . str_replace('\\', '', $className) . '.php';
     }
@@ -124,7 +128,7 @@ class ProxyFactory
      */
     public function generateProxyClasses(array $classes, $toDir = null)
     {
-        $proxyDir = $toDir ? : $this->_proxyDir;
+        $proxyDir = $toDir ?: $this->_proxyDir;
         $proxyDir = rtrim($proxyDir, DIRECTORY_SEPARATOR);
         $num = 0;
 
@@ -146,11 +150,11 @@ class ProxyFactory
     /**
      * Generates a proxy class file.
      *
-     * @param ClassMetadata $class Metadata for the original class
-     * @param string $fileName Filename (full path) for the generated class
-     * @param string $file The proxy class template data
+     * @param $class
+     * @param $proxyClassName
+     * @param $file The path of the file to write to.
      */
-    private function _generateProxyClass(ClassMetadata $class, $fileName, $file)
+    private function _generateProxyClass($class, $fileName, $file)
     {
         $methods = $this->_generateMethods($class);
         $sleepImpl = $this->_generateSleep($class);
@@ -181,11 +185,11 @@ class ProxyFactory
 
         $parentDirectory = dirname($fileName);
 
-        if (!is_dir($parentDirectory)) {
+        if ( ! is_dir($parentDirectory)) {
             if (false === @mkdir($parentDirectory, 0775, true)) {
                 throw ProxyException::proxyDirectoryNotWritable();
             }
-        } else if (!is_writable($parentDirectory)) {
+        } else if ( ! is_writable($parentDirectory)) {
             throw ProxyException::proxyDirectoryNotWritable();
         }
 
@@ -212,7 +216,7 @@ class ProxyFactory
             }
             $methodNames[$method->getName()] = true;
 
-            if ($method->isPublic() && !$method->isFinal() && !$method->isStatic()) {
+            if ($method->isPublic() && ! $method->isFinal() && ! $method->isStatic()) {
                 $methods .= "\n" . '    public function ';
                 if ($method->returnsReference()) {
                     $methods .= '&';
@@ -226,7 +230,7 @@ class ProxyFactory
                         $firstParam = false;
                     } else {
                         $parameterString .= ', ';
-                        $argumentString .= ', ';
+                        $argumentString  .= ', ';
                     }
 
                     // We need to pick the type hint class too
@@ -241,7 +245,7 @@ class ProxyFactory
                     }
 
                     $parameterString .= '$' . $param->getName();
-                    $argumentString .= '$' . $param->getName();
+                    $argumentString  .= '$' . $param->getName();
 
                     if ($param->isDefaultValueAvailable()) {
                         $parameterString .= ' = ' . var_export($param->getDefaultValue(), true);
@@ -281,16 +285,16 @@ class ProxyFactory
      * @param ClassMetadata $class
      * @return bool
      */
-    private function isShortIdentifierGetter($method, ClassMetadata $class)
+    private function isShortIdentifierGetter($method, $class)
     {
         $identifier = lcfirst(substr($method->getName(), 3));
         $cheapCheck = (
             $method->getNumberOfParameters() == 0 &&
-                substr($method->getName(), 0, 3) == "get" &&
-                in_array($identifier, $class->identifier, true) &&
-                $class->hasField($identifier) &&
-                (($method->getEndLine() - $method->getStartLine()) <= 4)
-                && in_array($class->fieldMappings[$identifier]['type'], array('integer', 'bigint', 'smallint', 'string'))
+            substr($method->getName(), 0, 3) == "get" &&
+            in_array($identifier, $class->identifier, true) &&
+            $class->hasField($identifier) &&
+            (($method->getEndLine() - $method->getStartLine()) <= 4)
+            && in_array($class->fieldMappings[$identifier]['type'], array('integer', 'bigint', 'smallint', 'string'))
         );
 
         if ($cheapCheck) {
@@ -340,7 +344,7 @@ class ProxyFactory
 
     /** Proxy class code template */
     private static $_proxyClassTemplate =
-        '<?php
+'<?php
 
 namespace <namespace>;
 
@@ -399,7 +403,7 @@ class <proxyClassName> extends \<className> implements \Doctrine\ORM\Proxy\Proxy
             if ($original === null) {
                 throw new \Doctrine\ORM\EntityNotFoundException();
             }
-            foreach ($class->reflFields as $field => $reflProperty) {
+            foreach ($class->reflFields AS $field => $reflProperty) {
                 $reflProperty->setValue($this, $reflProperty->getValue($original));
             }
             unset($this->_entityPersister, $this->_identifier);

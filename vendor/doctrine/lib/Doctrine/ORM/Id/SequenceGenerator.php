@@ -13,7 +13,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
@@ -59,10 +59,10 @@ class SequenceGenerator extends AbstractIdGenerator implements Serializable
         if ($this->_maxValue === null || $this->_nextValue == $this->_maxValue) {
             // Allocate new values
             $conn = $em->getConnection();
-            $sql = $conn->getDatabasePlatform()->getSequenceNextValSQL($this->_sequenceName);
+            $sql  = $conn->getDatabasePlatform()->getSequenceNextValSQL($this->_sequenceName);
 
             $this->_nextValue = (int)$conn->fetchColumn($sql);
-            $this->_maxValue = $this->_nextValue + $this->_allocationSize;
+            $this->_maxValue  = $this->_nextValue + $this->_allocationSize;
         }
 
         return $this->_nextValue++;
@@ -92,7 +92,7 @@ class SequenceGenerator extends AbstractIdGenerator implements Serializable
     {
         return serialize(array(
             'allocationSize' => $this->_allocationSize,
-            'sequenceName' => $this->_sequenceName
+            'sequenceName'   => $this->_sequenceName
         ));
     }
 

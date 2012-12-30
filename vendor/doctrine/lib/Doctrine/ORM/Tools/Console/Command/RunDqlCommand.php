@@ -1,5 +1,7 @@
 <?php
 /*
+ *  $Id$
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -13,22 +15,23 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Tools\Console\Command;
 
 use Symfony\Component\Console\Input\InputArgument,
-Symfony\Component\Console\Input\InputOption,
-Symfony\Component\Console;
+    Symfony\Component\Console\Input\InputOption,
+    Symfony\Component\Console;
 
 /**
  * Command to execute DQL queries in a given EntityManager.
  *
- *
+ * @license http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link    www.doctrine-project.org
  * @since   2.0
+ * @version $Revision$
  * @author  Benjamin Eberlei <kontakt@beberlei.de>
  * @author  Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @author  Jonathan Wage <jonwage@gmail.com>
@@ -42,9 +45,9 @@ class RunDqlCommand extends Console\Command\Command
     protected function configure()
     {
         $this
-            ->setName('orm:run-dql')
-            ->setDescription('Executes arbitrary DQL directly from the command line.')
-            ->setDefinition(array(
+        ->setName('orm:run-dql')
+        ->setDescription('Executes arbitrary DQL directly from the command line.')
+        ->setDefinition(array(
             new InputArgument('dql', InputArgument::REQUIRED, 'The DQL to execute.'),
             new InputOption(
                 'hydrate', null, InputOption::VALUE_REQUIRED,
@@ -64,7 +67,7 @@ class RunDqlCommand extends Console\Command\Command
                 'Dumping depth of Entity graph.', 7
             )
         ))
-            ->setHelp(<<<EOT
+        ->setHelp(<<<EOT
 Executes arbitrary DQL directly from the command line.
 EOT
         );
@@ -83,14 +86,14 @@ EOT
 
         $depth = $input->getOption('depth');
 
-        if (!is_numeric($depth)) {
+        if ( ! is_numeric($depth)) {
             throw new \LogicException("Option 'depth' must contains an integer value");
         }
 
         $hydrationModeName = $input->getOption('hydrate');
         $hydrationMode = 'Doctrine\ORM\Query::HYDRATE_' . strtoupper(str_replace('-', '_', $hydrationModeName));
 
-        if (!defined($hydrationMode)) {
+        if ( ! defined($hydrationMode)) {
             throw new \RuntimeException(
                 "Hydration mode '$hydrationModeName' does not exist. It should be either: object. array, scalar or single-scalar."
             );
@@ -99,19 +102,19 @@ EOT
         $query = $em->createQuery($dql);
 
         if (($firstResult = $input->getOption('first-result')) !== null) {
-            if (!is_numeric($firstResult)) {
+            if ( ! is_numeric($firstResult)) {
                 throw new \LogicException("Option 'first-result' must contains an integer value");
             }
 
-            $query->setFirstResult((int)$firstResult);
+            $query->setFirstResult((int) $firstResult);
         }
 
         if (($maxResult = $input->getOption('max-result')) !== null) {
-            if (!is_numeric($maxResult)) {
+            if ( ! is_numeric($maxResult)) {
                 throw new \LogicException("Option 'max-result' must contains an integer value");
             }
 
-            $query->setMaxResults((int)$maxResult);
+            $query->setMaxResults((int) $maxResult);
         }
 
         $resultSet = $query->execute(array(), constant($hydrationMode));

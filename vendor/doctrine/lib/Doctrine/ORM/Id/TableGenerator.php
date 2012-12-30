@@ -13,7 +13,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
@@ -53,7 +53,7 @@ class TableGenerator extends AbstractIdGenerator
 
             if ($conn->getTransactionNestingLevel() === 0) {
                 // use select for update
-                $sql = $conn->getDatabasePlatform()->getTableHiLoCurrentValSql($this->_tableName, $this->_sequenceName);
+                $sql          = $conn->getDatabasePlatform()->getTableHiLoCurrentValSql($this->_tableName, $this->_sequenceName);
                 $currentLevel = $conn->fetchColumn($sql);
 
                 if ($currentLevel != null) {
@@ -64,7 +64,7 @@ class TableGenerator extends AbstractIdGenerator
                         $this->_tableName, $this->_sequenceName, $this->_allocationSize
                     );
 
-                    if ($conn->executeUpdate($updateSql, array(1 => $currentLevel, 2 => $currentLevel + 1)) !== 1) {
+                    if ($conn->executeUpdate($updateSql, array(1 => $currentLevel, 2 => $currentLevel+1)) !== 1) {
                         // no affected rows, concurrency issue, throw exception
                     }
                 } else {

@@ -13,14 +13,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Mapping\Builder;
 
 use Doctrine\ORM\Mapping\ClassMetadata,
-Doctrine\ORM\Mapping\ClassMetadataInfo;
+    Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 /**
  * Builder Object for ClassMetadata
@@ -131,7 +131,7 @@ class ClassMetadataBuilder
      */
     public function addUniqueConstraint(array $columns, $name)
     {
-        if (!isset($this->cm->table['uniqueConstraints'])) {
+        if ( ! isset($this->cm->table['uniqueConstraints'])) {
             $this->cm->table['uniqueConstraints'] = array();
         }
 
@@ -280,7 +280,7 @@ class ClassMetadataBuilder
             $this,
             array(
                 'fieldName' => $name,
-                'type' => $type
+                'type'      => $type
             )
         );
     }
@@ -318,7 +318,7 @@ class ClassMetadataBuilder
         return new AssociationBuilder(
             $this,
             array(
-                'fieldName' => $name,
+                'fieldName'    => $name,
                 'targetEntity' => $targetEntity
             ),
             ClassMetadata::MANY_TO_ONE
@@ -337,7 +337,7 @@ class ClassMetadataBuilder
         return new AssociationBuilder(
             $this,
             array(
-                'fieldName' => $name,
+                'fieldName'    => $name,
                 'targetEntity' => $targetEntity
             ),
             ClassMetadata::ONE_TO_ONE
@@ -391,7 +391,7 @@ class ClassMetadataBuilder
         return new ManyToManyAssociationBuilder(
             $this,
             array(
-                'fieldName' => $name,
+                'fieldName'    => $name,
                 'targetEntity' => $targetEntity
             ),
             ClassMetadata::MANY_TO_MANY
@@ -445,7 +445,7 @@ class ClassMetadataBuilder
         return new OneToManyAssociationBuilder(
             $this,
             array(
-                'fieldName' => $name,
+                'fieldName'    => $name,
                 'targetEntity' => $targetEntity
             ),
             ClassMetadata::ONE_TO_MANY

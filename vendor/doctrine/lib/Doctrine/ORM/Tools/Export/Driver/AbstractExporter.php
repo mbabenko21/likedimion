@@ -1,5 +1,8 @@
 <?php
+
 /*
+ *  $Id$
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -13,7 +16,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
@@ -26,9 +29,10 @@ use Doctrine\ORM\Tools\Export\ExportException;
  * Abstract base class which is to be used for the Exporter drivers
  * which can be found in \Doctrine\ORM\Tools\Export\Driver
  *
- *
+ * @license http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link    www.doctrine-project.org
  * @since   2.0
+ * @version $Revision$
  * @author  Jonathan Wage <jonwage@gmail.com>
  */
 abstract class AbstractExporter
@@ -102,16 +106,16 @@ abstract class AbstractExporter
      */
     public function export()
     {
-        if (!is_dir($this->_outputDir)) {
+        if ( ! is_dir($this->_outputDir)) {
             mkdir($this->_outputDir, 0777, true);
         }
 
         foreach ($this->_metadata as $metadata) {
             //In case output is returned, write it to a file, skip otherwise
-            if ($output = $this->exportClassMetadata($metadata)) {
+            if($output = $this->exportClassMetadata($metadata)){
                 $path = $this->_generateOutputPath($metadata);
                 $dir = dirname($path);
-                if (!is_dir($dir)) {
+                if ( ! is_dir($dir)) {
                     mkdir($dir, 0777, true);
                 }
                 if (file_exists($path) && !$this->_overwriteExistingFiles) {
@@ -151,60 +155,63 @@ abstract class AbstractExporter
 
     protected function _getInheritanceTypeString($type)
     {
-        switch ($type) {
+        switch ($type)
+        {
             case ClassMetadataInfo::INHERITANCE_TYPE_NONE:
                 return 'NONE';
-                break;
+            break;
 
             case ClassMetadataInfo::INHERITANCE_TYPE_JOINED:
                 return 'JOINED';
-                break;
+            break;
 
             case ClassMetadataInfo::INHERITANCE_TYPE_SINGLE_TABLE:
                 return 'SINGLE_TABLE';
-                break;
+            break;
 
             case ClassMetadataInfo::INHERITANCE_TYPE_TABLE_PER_CLASS:
                 return 'PER_CLASS';
-                break;
+            break;
         }
     }
 
     protected function _getChangeTrackingPolicyString($policy)
     {
-        switch ($policy) {
+        switch ($policy)
+        {
             case ClassMetadataInfo::CHANGETRACKING_DEFERRED_IMPLICIT:
                 return 'DEFERRED_IMPLICIT';
-                break;
+            break;
 
             case ClassMetadataInfo::CHANGETRACKING_DEFERRED_EXPLICIT:
                 return 'DEFERRED_EXPLICIT';
-                break;
+            break;
 
             case ClassMetadataInfo::CHANGETRACKING_NOTIFY:
                 return 'NOTIFY';
-                break;
+            break;
         }
     }
 
     protected function _getIdGeneratorTypeString($type)
     {
-        switch ($type) {
+        switch ($type)
+        {
             case ClassMetadataInfo::GENERATOR_TYPE_AUTO:
                 return 'AUTO';
-                break;
+            break;
 
             case ClassMetadataInfo::GENERATOR_TYPE_SEQUENCE:
                 return 'SEQUENCE';
-                break;
+            break;
 
             case ClassMetadataInfo::GENERATOR_TYPE_TABLE:
                 return 'TABLE';
-                break;
+            break;
 
             case ClassMetadataInfo::GENERATOR_TYPE_IDENTITY:
                 return 'IDENTITY';
-                break;
+            break;
         }
     }
 }

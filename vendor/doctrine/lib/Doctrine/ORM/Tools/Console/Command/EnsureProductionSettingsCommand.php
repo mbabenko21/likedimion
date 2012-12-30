@@ -1,5 +1,7 @@
 <?php
 /*
+ *  $Id$
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -13,20 +15,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
+ * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Tools\Console\Command;
 
 use Symfony\Component\Console\Input\InputArgument,
-Symfony\Component\Console\Input\InputOption,
-Symfony\Component\Console;
+    Symfony\Component\Console\Input\InputOption,
+    Symfony\Component\Console;
 
 /**
  * Command to ensure that Doctrine is properly configured for a production environment.
  *
- *
+ * @license http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link    www.doctrine-project.org
  * @since   2.0
  * @version $Revision$
@@ -43,15 +45,15 @@ class EnsureProductionSettingsCommand extends Console\Command\Command
     protected function configure()
     {
         $this
-            ->setName('orm:ensure-production-settings')
-            ->setDescription('Verify that Doctrine is properly configured for a production environment.')
-            ->setDefinition(array(
+        ->setName('orm:ensure-production-settings')
+        ->setDescription('Verify that Doctrine is properly configured for a production environment.')
+        ->setDefinition(array(
             new InputOption(
                 'complete', null, InputOption::VALUE_NONE,
                 'Flag to also inspect database connection existance.'
             )
         ))
-            ->setHelp(<<<EOT
+        ->setHelp(<<<EOT
 Verify that Doctrine is properly configured for a production environment.
 EOT
         );
