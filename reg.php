@@ -1,8 +1,8 @@
 <?php
-use MB\Glor\Params\ItemParams;
-use MB\Glor\Params\Equip;
-
 require_once "bootstrap.php";
+use MB\Glor\Params\ItemParams;
+use MB\Helper\StrHelper;
+use MB\Glor\Params\Equip;
 
 $reg = \MB\Lang::section("registration");
 $iamnotbot1 = rand(1, 9);
@@ -27,8 +27,11 @@ if (empty($_POST["reg_button"])) {
     $errLang = \MB\Lang::section("errors");
     $regLang = \MB\Lang::section("registration");
     $loginPLang = \MB\Lang::section("login_page");
+    $login = StrHelper::utfBadstrip($_POST["login"]);
+    $email = \MB\Helper\StrHelper::utfBadstrip($_POST["email"]);
+    $charName = \MB\Helper\StrHelper::utfBadstrip($_POST["char_name"]);
 
-    if (!preg_match("/^[a-z0-9_]+$/i", $_POST["login"])) {
+    if (!preg_match("/^[a-z0-9_]+$/i", $login)) {
         $errors[] = $errLang["reg"]["login_not_valide"];
     }
 
@@ -40,10 +43,10 @@ if (empty($_POST["reg_button"])) {
         $errors[] = $errLang["reg"]["passwords_not_confirm"];
     }
 
-    if (!preg_match("/^((?:(?:(?:\w[\.\-\+]?)*)\w)+)\@((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$/", $_POST["email"])) {
+    if (!preg_match("/^((?:(?:(?:\w[\.\-\+]?)*)\w)+)\@((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$/", $email)) {
         $errors[] = $errLang["reg"]["email_not_valide"];
     }
-    $cn =  strtolower($_POST["char_name"]);
+    $cn =  strtolower($charName);
     if (!preg_match("/[А-Яа-я]+/i", $cn, $matches)) {
         $errors[] = $errLang["reg"]["char_name_is_not_valide"];
     }
@@ -53,17 +56,17 @@ if (empty($_POST["reg_button"])) {
 
     if (count($errors) < 1) {
         try {
-            $userService->findByLogin($_POST["login"]);
-            $userService->findByEmail($_POST["email"]);
+            $userService->findByLogin($login);
+            $userService->findByEmail($email);
             $errors[] = $errLang["reg"]["user_exists"];
         } catch (\Doctrine\ORM\EntityNotFoundException $e) {
             try {
-                $charService->findByName($_POST["char_name"]);
+                $charService->findByName($charName);
                 $errors[] = $errLang["reg"]["char_exists"];
             } catch (\Doctrine\ORM\EntityNotFoundException $e) {
                 $user = new MB\Glor\User();
-                $user->setLogin($_POST["login"]);
-                $user->setEmail($_POST["email"]);
+                $user->setLogin($login);
+                $user->setEmail($email);
                 $user->setPassword($_POST["password"]);
                 $userService->persist($user);
                 $userService->commit();
@@ -96,7 +99,7 @@ if (empty($_POST["reg_button"])) {
                         break;
                 }
                 $char = $charService->getNewInstance($class);
-                $char->setName($_POST["char_name"]);
+                $char->setName($charName);
                 $char->setUser($user);
                 $char->setLevel(0);
                 $char->setExp(0);
