@@ -1,53 +1,59 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2012-12-24 22:08:57
+<?php /* Smarty version Smarty-3.1.12, created on 2013-01-03 01:13:04
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\game\char\inv.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:579050d89a39793408-75127522%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2105550e493029057d5-85508736%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '1038a36a3f89854a8ce5447b0706dd9b0cdc7191' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\game\\char\\inv.tpl',
-      1 => 1356292057,
+      1 => 1356845066,
       2 => 'file',
     ),
     '215698c7640cbb297996a8212b39a1e84ecfae22' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\wrapper.html.tpl',
-      1 => 1356259495,
+      1 => 1356845066,
       2 => 'file',
     ),
     '8d6e602103c68add83eac291ee4509c468d2de08' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\errors.tpl',
-      1 => 1355943354,
+      1 => 1356845066,
       2 => 'file',
     ),
     '0b873bcc32bc7ac748b2b77eb79003c5624de9f3' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\char_menu.tpl',
-      1 => 1356260522,
+      1 => 1356845066,
+      2 => 'file',
+    ),
+    '611db712e498160218c1c33df6c6a26577f52ef1' => 
+    array (
+      0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\item_look.tpl',
+      1 => 1357161176,
       2 => 'file',
     ),
     '9efe8d0904104a8fb6921fcf32e5df1812bce1a1' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\item.tpl',
-      1 => 1356260546,
+      1 => 1357157071,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '579050d89a39793408-75127522',
+  'nocache_hash' => '2105550e493029057d5-85508736',
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_50e49304560ad9_90549525',
   'variables' => 
   array (
     'view' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_50d89a3a8e3f56_23381114',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_50d89a3a8e3f56_23381114')) {function content_50d89a3a8e3f56_23381114($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
+<?php if ($_valid && !is_callable('content_50e49304560ad9_90549525')) {function content_50e49304560ad9_90549525($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
 ?><?php echo $_smarty_tpl->getSubTemplate ("layout/header.html.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 <div class="wrapper">
@@ -55,16 +61,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <?php if (isset($_smarty_tpl->tpl_vars['view']->value['errors'])&&MB\Core\Kernel\SmartyService::length($_smarty_tpl->tpl_vars['view']->value['errors'])>0){?>
     <?php /*  Call merged included template "layout/errors.tpl" */
 $_tpl_stack[] = $_smarty_tpl;
- $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/errors.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('errors'=>$_smarty_tpl->tpl_vars['view']->value['errors']), 0, '579050d89a39793408-75127522');
-content_50d89a39ba91e7_11404776($_smarty_tpl);
+ $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/errors.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('errors'=>$_smarty_tpl->tpl_vars['view']->value['errors']), 0, '2105550e493029057d5-85508736');
+content_50e4a2e06106d7_70343229($_smarty_tpl);
 $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/errors.tpl" */?>
     <?php }?>
 
     
 <?php /*  Call merged included template "layout/char_menu.tpl" */
 $_tpl_stack[] = $_smarty_tpl;
- $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/char_menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0, '579050d89a39793408-75127522');
-content_50d89a39efb390_50736613($_smarty_tpl);
+ $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/char_menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0, '2105550e493029057d5-85508736');
+content_50e4a2e0922fa1_68571743($_smarty_tpl);
 $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/char_menu.tpl" */?>
 <ul class="item-list">
     <?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
@@ -85,8 +91,8 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
             </div>
             <?php /*  Call merged included template "layout/item.tpl" */
 $_tpl_stack[] = $_smarty_tpl;
- $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/item.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('item'=>$_smarty_tpl->tpl_vars['item']->value), 0, '579050d89a39793408-75127522');
-content_50d89a3a64a666_50030250($_smarty_tpl);
+ $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/item.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('item'=>$_smarty_tpl->tpl_vars['item']->value), 0, '2105550e493029057d5-85508736');
+content_50e4a2e11d5023_97486440($_smarty_tpl);
 $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/item.tpl" */?>
         </li>
     <?php } ?>
@@ -94,9 +100,9 @@ $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/item
 
 </div>
 <?php echo $_smarty_tpl->getSubTemplate ("layout/footer.html.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-24 22:08:57
+<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2013-01-03 01:13:04
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\layout\errors.tpl" */ ?>
-<?php if ($_valid && !is_callable('content_50d89a39ba91e7_11404776')) {function content_50d89a39ba91e7_11404776($_smarty_tpl) {?><div class="errors">
+<?php if ($_valid && !is_callable('content_50e4a2e06106d7_70343229')) {function content_50e4a2e06106d7_70343229($_smarty_tpl) {?><div class="errors">
     <ul>
     <?php  $_smarty_tpl->tpl_vars['error'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['error']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['errors']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -107,9 +113,9 @@ $_smarty_tpl->tpl_vars['error']->_loop = true;
 </span></li>
     <?php } ?>
     </ul>
-</div><?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-24 22:08:57
+</div><?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2013-01-03 01:13:04
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\layout\char_menu.tpl" */ ?>
-<?php if ($_valid && !is_callable('content_50d89a39efb390_50736613')) {function content_50d89a39efb390_50736613($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
+<?php if ($_valid && !is_callable('content_50e4a2e0922fa1_68571743')) {function content_50e4a2e0922fa1_68571743($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
 ?><div class="char_menu">
     <ul class="menu">
         <li>
@@ -148,26 +154,75 @@ $_smarty_tpl->tpl_vars['error']->_loop = true;
         </li>
     </ul>
 </div>
-<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-24 22:08:58
+<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2013-01-03 01:13:05
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\layout\item.tpl" */ ?>
-<?php if ($_valid && !is_callable('content_50d89a3a64a666_50030250')) {function content_50d89a3a64a666_50030250($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
+<?php if ($_valid && !is_callable('content_50e4a2e11d5023_97486440')) {function content_50e4a2e11d5023_97486440($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
 ?><div class="b-item">
     <a href="/?do=item:about&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
 &<?php echo smarty_function_math(array('equation'=>'rand(0,100)'),$_smarty_tpl);?>
 ">
-        <div class="b-item__icon"></div>
-        <div class="b-item__name">
-        <?php if ($_smarty_tpl->tpl_vars['item']->value->getCount()>1){?>
-                            <?php echo $_smarty_tpl->tpl_vars['item']->value->getName('p');?>
-
-                            <?php }else{ ?>
-                            <?php echo $_smarty_tpl->tpl_vars['item']->value->getName();?>
-
-                        <?php }?>
-        </div>
-        <div class="b-item__counter">
-        <?php echo $_smarty_tpl->tpl_vars['item']->value->getCount();?>
-
-        </div>
+        <?php /*  Call merged included template "layout/item_look.tpl" */
+$_tpl_stack[] = $_smarty_tpl;
+ $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/item_look.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('item'=>$_smarty_tpl->tpl_vars['item']->value,'counter'=>"true"), 0, '2105550e493029057d5-85508736');
+content_50e4a2e137d072_21238607($_smarty_tpl);
+$_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/item_look.tpl" */?>
     </a>
+</div><?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2013-01-03 01:13:05
+         compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\layout\item_look.tpl" */ ?>
+<?php if ($_valid && !is_callable('content_50e4a2e137d072_21238607')) {function content_50e4a2e137d072_21238607($_smarty_tpl) {?>
+<div class="item_look">
+    <div class="item_image">
+
+    </div>
+    <div class="item_info">
+    <?php if ($_smarty_tpl->tpl_vars['item']->value->getModificationLevel()>0){?>
+        <?php if (isset($_smarty_tpl->tpl_vars["modif"])) {$_smarty_tpl->tpl_vars["modif"] = clone $_smarty_tpl->tpl_vars["modif"];
+$_smarty_tpl->tpl_vars["modif"]->value = "+".((string)$_smarty_tpl->tpl_vars['item']->value->getModificationLevel()); $_smarty_tpl->tpl_vars["modif"]->nocache = null; $_smarty_tpl->tpl_vars["modif"]->scope = 0;
+} else $_smarty_tpl->tpl_vars["modif"] = new Smarty_variable("+".((string)$_smarty_tpl->tpl_vars['item']->value->getModificationLevel()), null, 0);?>
+        <?php }else{ ?>
+        <?php if (isset($_smarty_tpl->tpl_vars["modif"])) {$_smarty_tpl->tpl_vars["modif"] = clone $_smarty_tpl->tpl_vars["modif"];
+$_smarty_tpl->tpl_vars["modif"]->value = ''; $_smarty_tpl->tpl_vars["modif"]->nocache = null; $_smarty_tpl->tpl_vars["modif"]->scope = 0;
+} else $_smarty_tpl->tpl_vars["modif"] = new Smarty_variable('', null, 0);?>
+    <?php }?>
+    <?php if ($_smarty_tpl->tpl_vars['item']->value->getMaster()!=''){?>
+        <?php if (isset($_smarty_tpl->tpl_vars["mast"])) {$_smarty_tpl->tpl_vars["mast"] = clone $_smarty_tpl->tpl_vars["mast"];
+$_smarty_tpl->tpl_vars["mast"]->value = "(".((string)$_smarty_tpl->tpl_vars['item']->value->getMaster()).")"; $_smarty_tpl->tpl_vars["mast"]->nocache = null; $_smarty_tpl->tpl_vars["mast"]->scope = 0;
+} else $_smarty_tpl->tpl_vars["mast"] = new Smarty_variable("(".((string)$_smarty_tpl->tpl_vars['item']->value->getMaster()).")", null, 0);?>
+        <?php }else{ ?>
+        <?php if (isset($_smarty_tpl->tpl_vars["mast"])) {$_smarty_tpl->tpl_vars["mast"] = clone $_smarty_tpl->tpl_vars["mast"];
+$_smarty_tpl->tpl_vars["mast"]->value = ''; $_smarty_tpl->tpl_vars["mast"]->nocache = null; $_smarty_tpl->tpl_vars["mast"]->scope = 0;
+} else $_smarty_tpl->tpl_vars["mast"] = new Smarty_variable('', null, 0);?>
+    <?php }?>
+        <span id="item_name">
+        <?php if (isset($_smarty_tpl->tpl_vars['counter']->value)){?>
+            <?php if ($_smarty_tpl->tpl_vars['item']->value->getCount()>1){?>
+                <?php if (isset($_smarty_tpl->tpl_vars["v"])) {$_smarty_tpl->tpl_vars["v"] = clone $_smarty_tpl->tpl_vars["v"];
+$_smarty_tpl->tpl_vars["v"]->value = "p"; $_smarty_tpl->tpl_vars["v"]->nocache = null; $_smarty_tpl->tpl_vars["v"]->scope = 0;
+} else $_smarty_tpl->tpl_vars["v"] = new Smarty_variable("p", null, 0);?>
+                <?php }else{ ?>
+                <?php if (isset($_smarty_tpl->tpl_vars["v"])) {$_smarty_tpl->tpl_vars["v"] = clone $_smarty_tpl->tpl_vars["v"];
+$_smarty_tpl->tpl_vars["v"]->value = "s"; $_smarty_tpl->tpl_vars["v"]->nocache = null; $_smarty_tpl->tpl_vars["v"]->scope = 0;
+} else $_smarty_tpl->tpl_vars["v"] = new Smarty_variable("s", null, 0);?>
+            <?php }?>
+            <?php }else{ ?>
+            <?php if (isset($_smarty_tpl->tpl_vars["v"])) {$_smarty_tpl->tpl_vars["v"] = clone $_smarty_tpl->tpl_vars["v"];
+$_smarty_tpl->tpl_vars["v"]->value = "s"; $_smarty_tpl->tpl_vars["v"]->nocache = null; $_smarty_tpl->tpl_vars["v"]->scope = 0;
+} else $_smarty_tpl->tpl_vars["v"] = new Smarty_variable("s", null, 0);?>
+        <?php }?>
+            <div class="name"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['v']->value;?>
+<?php $_tmp1=ob_get_clean();?><?php echo mb_strtolower($_smarty_tpl->tpl_vars['item']->value->getName($_tmp1), 'UTF-8');?>
+</div>
+            <div class="bold"><?php echo $_smarty_tpl->tpl_vars['modif']->value;?>
+</div>
+            <div class="bold"><?php echo mb_strtolower($_smarty_tpl->tpl_vars['mast']->value, 'UTF-8');?>
+</div>
+        <?php if (isset($_smarty_tpl->tpl_vars['counter']->value)){?>
+            <div class="counter bold">(<?php echo $_smarty_tpl->tpl_vars['item']->value->getCount();?>
+ <?php echo MB\Core\Kernel\SmartyService::lang(array('sect'=>"other",'line'=>"sh"),$_smarty_tpl);?>
+)</div>
+        <?php }?>
+        </span>
+        <span id="item_info"><?php echo $_smarty_tpl->tpl_vars['item']->value->getInfo();?>
+</span>
+    </div>
 </div><?php }} ?>

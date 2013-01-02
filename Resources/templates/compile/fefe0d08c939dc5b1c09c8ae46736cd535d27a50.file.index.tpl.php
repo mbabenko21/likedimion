@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2012-12-27 23:25:42
+<?php /* Smarty version Smarty-3.1.12, created on 2012-12-30 11:30:11
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\game\main\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2057250d896d2285e30-72667617%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,25 +7,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fefe0d08c939dc5b1c09c8ae46736cd535d27a50' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\game\\main\\index.tpl',
-      1 => 1356636332,
+      1 => 1356845066,
       2 => 'file',
     ),
     '215698c7640cbb297996a8212b39a1e84ecfae22' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\wrapper.html.tpl',
-      1 => 1356259495,
+      1 => 1356845066,
       2 => 'file',
     ),
     '8d6e602103c68add83eac291ee4509c468d2de08' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\errors.tpl',
-      1 => 1355943354,
+      1 => 1356845066,
       2 => 'file',
     ),
     '85797526d3efe687b40e3e12b857ccd3249027db' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\menu.tpl',
-      1 => 1356329934,
+      1 => 1356845066,
       2 => 'file',
     ),
   ),
@@ -50,7 +50,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <?php /*  Call merged included template "layout/errors.tpl" */
 $_tpl_stack[] = $_smarty_tpl;
  $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/errors.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('errors'=>$_smarty_tpl->tpl_vars['view']->value['errors']), 0, '2057250d896d2285e30-72667617');
-content_50dca0b6b86569_11011435($_smarty_tpl);
+content_50dfed8696c166_40461020($_smarty_tpl);
 $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/errors.tpl" */?>
     <?php }?>
 
@@ -67,7 +67,7 @@ $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/erro
     <?php /*  Call merged included template "layout/menu.tpl" */
 $_tpl_stack[] = $_smarty_tpl;
  $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0, '2057250d896d2285e30-72667617');
-content_50dca0b730e320_87681811($_smarty_tpl);
+content_50dfed8765c185_73093550($_smarty_tpl);
 $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/menu.tpl" */?>
     
     
@@ -231,9 +231,9 @@ $_smarty_tpl->tpl_vars["door"]->_loop = true;
 
 </div>
 <?php echo $_smarty_tpl->getSubTemplate ("layout/footer.html.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-27 23:25:42
+<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-30 11:30:14
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\layout\errors.tpl" */ ?>
-<?php if ($_valid && !is_callable('content_50dca0b6b86569_11011435')) {function content_50dca0b6b86569_11011435($_smarty_tpl) {?><div class="errors">
+<?php if ($_valid && !is_callable('content_50dfed8696c166_40461020')) {function content_50dfed8696c166_40461020($_smarty_tpl) {?><div class="errors">
     <ul>
     <?php  $_smarty_tpl->tpl_vars['error'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['error']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['errors']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -244,9 +244,9 @@ $_smarty_tpl->tpl_vars['error']->_loop = true;
 </span></li>
     <?php } ?>
     </ul>
-</div><?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-27 23:25:43
+</div><?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-30 11:30:15
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\layout\menu.tpl" */ ?>
-<?php if ($_valid && !is_callable('content_50dca0b730e320_87681811')) {function content_50dca0b730e320_87681811($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
+<?php if ($_valid && !is_callable('content_50dfed8765c185_73093550')) {function content_50dfed8765c185_73093550($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
 ?><div class="main_menu">
     <ul class="menu list_menu_main">
         <li>

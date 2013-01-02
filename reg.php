@@ -128,6 +128,7 @@ if (empty($_POST["reg_button"])) {
                 $equip->body = "i_a_b_nov";
                 $equip->gloves = "i_a_g_nov";
                 $equip->shoes = "i_a_s_nov";
+                $char->setEquip($equip);
                 $items->i_m_money = 400;
                 $char->setItems($items);
                 $user->setChar($char);

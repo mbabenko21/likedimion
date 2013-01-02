@@ -23,6 +23,14 @@ $moveService = \MB\Container::get("move_service");
 $journalService = \MB\Container::get("journal_service");
 $journalService->clearJournal();
 $errors = array();
+
+/** @var $itemsService \MB\Common\ItemsService */
+$itemsService = \MB\Container::get("items_service");
+$item = $itemsService->getItem("i_w_s_mb");
+
+$items = $char->getItems();
+$items->add($item, 1);
+$char->setItems($items);
 /**
  * Переход между локациями
  */

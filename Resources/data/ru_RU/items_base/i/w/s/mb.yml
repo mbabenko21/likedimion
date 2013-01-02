@@ -1,13 +1,14 @@
 #Generate base item mb 
 name:
-    s: меч Тысячи Истин
-    p: меч Тысячи Истин
+    s: меч Сила Элона
+    p: мечи Сила Элона
 look: Этот меч был сделам Содателем сией игры - Максимом Александровичем Бабенко для теста
 attack_name: неведомой хуйней
 cost: 1
 #Armors head|hand|body|leg|glov|shoes
 #Weapons sword|knife|axe|hummer|staff|bow|crossbow
 type: sword
+master: 'Элон'
 params:
     min_damage: 43
     max_damage: 49

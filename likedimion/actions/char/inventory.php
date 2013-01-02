@@ -24,6 +24,7 @@ if(!is_null($up)){
         $item = $char->getItems()->{$itemId};
         $items->up($item);
         $char->setItems($items);
+        RequestHelper::redirect("/?do=char:inventory&".rand(0000,9999));
     } catch(ItemLoaderException $e){
         $data["errors"][] = $e->getMessage();
     }
@@ -35,13 +36,15 @@ if(!is_null($down)){
         $item = $char->getItems()->{$itemId};
         $items->down($item);
         $char->setItems($items);
+        RequestHelper::redirect("/?do=char:inventory&".rand(0000,9999));
     } catch(ItemLoaderException $e){
         $data["errors"][] = $e->getMessage();
     }
 }
 $itemList = $char->getItems()->getCurrentPage();
+$paginator = $char->getItems()->getPaginator();
 $data["items"] = $itemList;
 $data["char"] = $char;
-$data["paginator"] = $char->getItems()->getPaginator();
+$data["paginator"] = $paginator;
 
 MB\View::make("game/char/inv.tpl", $data);

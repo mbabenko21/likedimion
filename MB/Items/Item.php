@@ -41,15 +41,15 @@ class Item implements ItemInterface
      */
     public function getInfo()
     {
-        if (isset($this->item["info"])) {
-            return $this->item["info"];
+        if (isset($this->item["look"])) {
+            return $this->item["look"];
         } else {
             return \MB\Lang::line("errors", "info_not_found");
         }
     }
 
     /**
-     * @return \MB\Glor\Params\ItemList
+     * @return ItemParams
      */
     public function getParams()
     {
@@ -101,6 +101,14 @@ class Item implements ItemInterface
     public function setCount($count)
     {
         $this->item["count"] = $count;
+    }
+
+    /**
+     * @param int $count
+     */
+    public function add($count)
+    {
+        $this->setCount($this->getCount() + $count);
     }
 
     /**
@@ -201,6 +209,30 @@ class Item implements ItemInterface
      */
     public function getModificationLevel()
     {
-        return isset($this->item["modification"]) ? $this->item["modification"] : 0;
+        return isset($this->item["modification"]) ? (int)$this->item["modification"] : 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->item["image"];
+    }
+
+    /**
+     * @return int
+     */
+    public function getCost()
+    {
+        return (int) $this->item["cost"];
+    }
+
+    /**
+     * @return string
+     */
+    public function getMaster()
+    {
+        return (isset($this->item["master"])) ? $this->item["master"] : "";
     }
 }

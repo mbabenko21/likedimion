@@ -33,7 +33,9 @@ class ItemsServiceImpl implements ItemsService
     public function getItem($itemId)
     {
         $this->loader->load($itemId);
-        return new Item($this->loader->get());
+        $item = new Item($this->loader->get());
+        $item->setId($itemId);
+        return $item;
     }
 
     /**

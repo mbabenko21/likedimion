@@ -280,7 +280,6 @@ ul.armor {
     list-style: none;
     text-align: left;
     width: 350px;
-    margin-left: 30%;
 }
 
 span.counter {
@@ -471,6 +470,16 @@ span.counter {
     width: 256px;
     position: relative;
 }
+
+.b-item a{
+    color: #2d2d2d;
+}
+
+.b-item a:hover{
+    color: #555;
+    font-weight: normal;
+}
+
 .b-item div{
     display: inline-block;
 }
@@ -572,6 +581,54 @@ span.counter {
 
 .blue{
     background-color: #00428b;
+}
+
+.item_look div{
+     display: inline-block;
+}
+
+.item_image{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-top: 3px;
+}
+
+.item_info{
+    margin-left: 40px;
+}
+
+.item_look span{
+    display: block;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.item_name span{
+    display:  inline;
+}
+
+.item_look span#item_name{
+    font-size: 16px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+.item_look span#item_type{
+    font-size: 12px;
+}
+
+.item{
+    margin-top: 5px;
+}
+
+.item_look span#item_info{
+    font-size: 12px;
+    font-variant: unicase;
 }
 
 .bluelight{

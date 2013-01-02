@@ -83,4 +83,22 @@ interface ItemInterface
      * @return int
      */
     public function getType();
+
+    /**
+     * @abstract
+     * @return string
+     */
+    public function getImage();
+
+    /**
+     * @abstract
+     * @return int
+     */
+    public function getCost();
+
+    /**
+     * @abstract
+     * @return string
+     */
+    public function getMaster();
 }

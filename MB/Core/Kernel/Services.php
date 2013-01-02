@@ -31,6 +31,18 @@ class Services
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $builder
      * @return \Symfony\Component\DependencyInjection\ContainerBuilder
      */
+    public static function createPlugins(ContainerBuilder $builder)
+    {
+        $loader = new YamlLoader(ROOT_DIR . "/Resources/config/plugins.yml");
+        $serviceConfiguration = new Configuration($loader);
+        return self::init($builder, $serviceConfiguration);
+    }
+
+    /**
+     * @static
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $builder
+     * @return \Symfony\Component\DependencyInjection\ContainerBuilder
+     */
     public static function createListeners(ContainerBuilder $builder)
     {
         $loader = new YamlLoader(ROOT_DIR . "/Resources/config/listeners.yml");

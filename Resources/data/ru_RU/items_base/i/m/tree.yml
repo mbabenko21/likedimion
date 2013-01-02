@@ -1,0 +1,31 @@
+#Generate base item tree 
+name:
+    s: ветка
+    p: ветки
+attack_name: 
+look: 'Обыкновенная ветка с дерева. Является расходным материалом для плотника'
+cost:
+#Armors head|hand|body|leg|glov|shoes
+#Weapons sword|knife|axe|hummer|staff|bow|crossbow
+type: 
+params:
+    min_damage: 
+    max_damage: 
+    speed: 
+    armor_from_crushing:
+    armor_from_cutting:
+    armor_from_pricking:
+    armor_from_magic:
+    bias:
+    parring:
+modification: #int
+needs:
+    class:
+    level:
+    strenge:
+    dexterity:
+    intelligence:
+jaks:
+bonuses:
+  life:
+  energy:

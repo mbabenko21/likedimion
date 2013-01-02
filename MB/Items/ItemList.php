@@ -33,13 +33,29 @@ class ItemList extends PaginationList
         }
     }
 
+    public function __set($name, $value)
+    {
+        if ($value instanceof ItemInterface) {
+            parent::__set($name, $value->getCount());
+        } else {
+            parent::__set($name, $value);
+        }
+    }
+
     /**
      * @param $item
      * @param $count
      */
     public function add(ItemInterface $item, $count)
     {
-        $this->__set($item->getId(), $count);
+        if (!$this->__isset($item->getId())) {
+            $this->__set($item->getId(), $count);
+        } else {
+            $this->__set(
+                $item->getId(),
+                $this->__get($item->getId())->getCount() + $count
+            );
+        }
     }
 
     /**
@@ -71,14 +87,15 @@ class ItemList extends PaginationList
 
     public function up(ItemInterface $item)
     {
-        if(isset($this->{$item->getId()})){
+        if (isset($this->{$item->getId()})) {
             return $this->move_array_element($this->params, $item->getId(), -1);
         }
         return false;
     }
 
-    public function down(ItemInterface $item){
-        if(isset($this->{$item->getId()})){
+    public function down(ItemInterface $item)
+    {
+        if (isset($this->{$item->getId()})) {
             return $this->move_array_element($this->params, $item->getId(), 1);
         }
     }
@@ -87,62 +104,58 @@ class ItemList extends PaginationList
     {
         if (empty($array) || !is_array($array))
             return false;
-        if (($key_source==$key_target))
+        if (($key_source == $key_target))
             return false;
         // find keys positions
-        $keys_positions=array_keys($array);
-        $key_source_position=array_shift(array_keys($keys_positions, $key_source));
-        $key_target_position=array_shift(array_keys($keys_positions, $key_target));
+        $keys_positions = array_keys($array);
+        $key_source_position = array_shift(array_keys($keys_positions, $key_source));
+        $key_target_position = array_shift(array_keys($keys_positions, $key_target));
         // exchange and sort postitions
-        if (($key_source_position!==null) && ($key_target_position!==null))
-        {
-            $buffer=$keys_positions[$key_source_position];
-            $keys_positions[$key_source_position]=$keys_positions[$key_target_position];
-            $keys_positions[$key_target_position]=$buffer;
+        if (($key_source_position !== null) && ($key_target_position !== null)) {
+            $buffer = $keys_positions[$key_source_position];
+            $keys_positions[$key_source_position] = $keys_positions[$key_target_position];
+            $keys_positions[$key_target_position] = $buffer;
             ksort($keys_positions);
             // write array values in new sequence
-            $new_array=array();
-            foreach ($keys_positions as $key)
-            {
-                $new_array[$key]=$array[$key];
+            $new_array = array();
+            foreach ($keys_positions as $key) {
+                $new_array[$key] = $array[$key];
                 unset($array[$key]);
             }
-            $array=$new_array;
+            $array = $new_array;
             return true;
         }
         return false;
     }
 
-    private function move_array_element(&$array, $element_key, $offset, $bubble_effect=true)
+    private function move_array_element(&$array, $element_key, $offset, $bubble_effect = true)
     {
         if (empty($array) || !is_array($array))
             return false;
         if (!array_key_exists($element_key, $array))
-            return  false;
-        $offset=(int)$offset;
-        if ($offset===0)
+            return false;
+        $offset = (int)$offset;
+        if ($offset === 0)
             return false;
         // get keys and determine positions
-        $keys=array_keys($array);
-        $element_position=array_shift(array_keys($keys, $element_key));
-        $last_position=array_pop(array_keys($keys));
-        $new_position=$element_position+$offset;
-        if ($new_position<0)
-            $new_position=0;
-        if ($new_position>$last_position)
-            $new_position=$last_position;
+        $keys = array_keys($array);
+        $element_position = array_shift(array_keys($keys, $element_key));
+        $last_position = array_pop(array_keys($keys));
+        $new_position = $element_position + $offset;
+        if ($new_position < 0)
+            $new_position = 0;
+        if ($new_position > $last_position)
+            $new_position = $last_position;
         // exchange keys
-        if ((abs($offset)===1) || ($bubble_effect!==true))
+        if ((abs($offset) === 1) || ($bubble_effect !== true))
             return $this->exchange_array_elements($array, $keys[$element_position], $keys[$new_position]);
-        else
-        {
-            $offset_increment=$offset>0 ? 1 : -1;
-            $buffer_position=$element_position;
-            while ($buffer_position!==$new_position)
-            {
-                $keys=array_keys($array);
-                $this->exchange_array_elements($array, $keys[$buffer_position], $keys[$buffer_position+$offset_increment]);
-                $buffer_position+=$offset_increment;
+        else {
+            $offset_increment = $offset > 0 ? 1 : -1;
+            $buffer_position = $element_position;
+            while ($buffer_position !== $new_position) {
+                $keys = array_keys($array);
+                $this->exchange_array_elements($array, $keys[$buffer_position], $keys[$buffer_position + $offset_increment]);
+                $buffer_position += $offset_increment;
             }
             return true;
         }

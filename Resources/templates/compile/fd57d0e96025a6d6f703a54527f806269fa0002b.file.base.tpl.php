@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2012-12-24 22:09:08
+<?php /* Smarty version Smarty-3.1.12, created on 2013-01-02 14:11:21
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\game\skills\base.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3206350d89a447a3886-89306107%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,25 +7,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fd57d0e96025a6d6f703a54527f806269fa0002b' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\game\\skills\\base.tpl',
-      1 => 1356187331,
+      1 => 1356845066,
       2 => 'file',
     ),
     '908143187a58e2d3d21cee5649aa3be4fc9e6a97' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\skills_menu.tpl',
-      1 => 1356260596,
+      1 => 1356845066,
       2 => 'file',
     ),
     '215698c7640cbb297996a8212b39a1e84ecfae22' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\wrapper.html.tpl',
-      1 => 1356259495,
+      1 => 1356845066,
       2 => 'file',
     ),
     '8d6e602103c68add83eac291ee4509c468d2de08' => 
     array (
       0 => 'D:\\server\\OpenServer\\domains\\glor\\Resources\\templates\\templates\\layout\\errors.tpl',
-      1 => 1355943354,
+      1 => 1356845066,
       2 => 'file',
     ),
   ),
@@ -33,13 +33,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_50d89a457ea769_98834986',
   'variables' => 
   array (
     'view' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_50d89a457ea769_98834986',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_50d89a457ea769_98834986')) {function content_50d89a457ea769_98834986($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'D:\\server\\OpenServer\\domains\\glor\\vendor\\smarty\\libs\\plugins\\function.math.php';
 ?><?php echo $_smarty_tpl->getSubTemplate ("layout/header.html.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
@@ -50,7 +50,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <?php /*  Call merged included template "layout/errors.tpl" */
 $_tpl_stack[] = $_smarty_tpl;
  $_smarty_tpl = $_smarty_tpl->setupInlineSubTemplate("layout/errors.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('errors'=>$_smarty_tpl->tpl_vars['view']->value['errors']), 0, '3206350d89a447a3886-89306107');
-content_50d89a450d23e9_17675359($_smarty_tpl);
+content_50e407c98f00b3_48460419($_smarty_tpl);
 $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/errors.tpl" */?>
     <?php }?>
 
@@ -142,9 +142,9 @@ $_smarty_tpl = array_pop($_tpl_stack); /*  End of included template "layout/erro
 
 </div>
 <?php echo $_smarty_tpl->getSubTemplate ("layout/footer.html.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2012-12-24 22:09:09
+<?php }} ?><?php /* Smarty version Smarty-3.1.12, created on 2013-01-02 14:11:21
          compiled from "D:\server\OpenServer\domains\glor\Resources\templates\templates\layout\errors.tpl" */ ?>
-<?php if ($_valid && !is_callable('content_50d89a450d23e9_17675359')) {function content_50d89a450d23e9_17675359($_smarty_tpl) {?><div class="errors">
+<?php if ($_valid && !is_callable('content_50e407c98f00b3_48460419')) {function content_50e407c98f00b3_48460419($_smarty_tpl) {?><div class="errors">
     <ul>
     <?php  $_smarty_tpl->tpl_vars['error'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['error']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['errors']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}

@@ -31,6 +31,7 @@ class Application
         $container = SmartyService::init($container, false);
         $container = Services::createServices($container);
         $container = Services::createListeners($container);
+        $container = Services::createPlugins($container);
         $container->set("items_loader", new ItemYamlLoader());
         $container->set("exp_table", new ExpTableYamlLoader(ROOT_DIR . "/Resources/config/exp_table.yml"));
         $crypter = new \MB\Crypt();
@@ -43,7 +44,7 @@ class Application
         Lang::load($appConfig->getLocale());
         self::registerListeners();
         set_error_handler(array('MB\Core\Kernel\Errors', 'handler'), E_ERROR);
-        set_exception_handler(array('MB\Core\Kernel\Errors', 'exceptions'));
+        //set_exception_handler(array('MB\Core\Kernel\Errors', 'exceptions'));
     }
 
     protected static function registerListeners()

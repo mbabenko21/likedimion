@@ -1,0 +1,33 @@
+#Generate base item mine 
+name:
+    s: руда
+    p: руда
+attack_name: 
+look: Кусок руды, добытый из рудной жилы
+cost: 4
+image:
+#Armors head|hand|body|leg|glov|shoes
+#Weapons sword|knife|axe|hummer|staff|bow|crossbow
+type: 
+params:
+    min_damage: 
+    max_damage: 
+    speed: 
+    armor_from_crushing:
+    armor_from_cutting:
+    armor_from_pricking:
+    armor_from_magic:
+    bias:
+    parring:
+modification:  #int
+master: ''
+needs:
+    class:
+    level:
+    strenge:
+    dexterity:
+    intelligence:
+jaks:
+bonuses:
+  life:
+  energy:

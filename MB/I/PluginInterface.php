@@ -10,8 +10,7 @@ interface PluginInterface
     /**
      * Запустить плагин
      * @abstract
-     * @param $pluginId
      * @return void
      */
-    public function run($pluginId);
+    public function action();
 }
