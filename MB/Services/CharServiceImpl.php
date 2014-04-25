@@ -112,6 +112,7 @@ class CharServiceImpl implements CharService
     public function persist(AbstractChar $char)
     {
         $this->entityManager->persist($char);
+        $this->entityManager->flush();
     }
 
     /**

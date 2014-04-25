@@ -17,6 +17,11 @@
                 {lang sect="menu" line="prof_skills"}
             </a>
         </li>
+        <li>
+            <a href="/?do=skills:talants"&{math equation='rand(0,100)'}">
+            {lang sect="menu" line="talants_skills"}
+            </a>
+        </li>
     </ul>
 </div>
     {if isset($view.study_points)}

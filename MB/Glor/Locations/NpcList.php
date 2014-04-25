@@ -119,7 +119,9 @@ class NpcList extends AbstractAutoIncrementObject implements ListInterface
     {
         $list = array();
         foreach ($this->npcList as $npc) {
-            $list[] = new Npc($npc);
+            $listItem = new Npc($npc);
+            $cp = $listItem->getBaseParams();
+            $list[] = $listItem;
         }
         return $list;
     }

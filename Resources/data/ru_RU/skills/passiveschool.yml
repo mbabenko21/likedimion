@@ -1,0 +1,17 @@
+passivephysdef:
+  name: "Постоянная защита"
+  info: "Увеличивает защиту от физических атак на {%f:skills.passivephysdef%} единиц."
+  type: "passive"
+  class: "h"
+
+passivelife:
+  name: "Усиление"
+  info: "Увеличивает запас здоровья на {%f:skills.passivelife%}%"
+  type: "passive"
+  class: "h"
+
+passivemanaregen:
+  name: "Прилив маны"
+  info: "Увеличивает количество восстанавливаемой маны в секунду на {%f:skills.passivemanaregen%}"
+  type: "passive"
+  class: "h"

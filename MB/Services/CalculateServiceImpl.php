@@ -7,6 +7,8 @@ namespace MB\Services;
  * Time: 9:30
  */
 use MB\Common\CalculatingService;
+use MB\Container;
+use MB\Glor\Params\CoolDownParams;
 use MB\I\ItemInterface;
 use MB\Exception\ItemLoaderException;
 use MB\Glor\Npc\AbstractPeopleNpc;
@@ -34,12 +36,13 @@ class CalculateServiceImpl implements CalculatingService
      */
     public function calculate(AbstractNpc $npc)
     {
+        $formuls = Container::instance("formuls");
         $baseParams = $npc->getBaseParams();
         $charParams = $npc->getCharParams();
         $warParams = $npc->getWarParams();
 
-        $charParams->maxLife = 10 + $baseParams->life * 10 + $baseParams->strenge * 2;
-        $charParams->maxEnergy = 10 + $baseParams->energy * 10 + $baseParams->intelligence * 5;
+        $charParams->maxLife = $formuls["params"]["max_life"];
+        $charParams->maxEnergy = $formuls["params"]["max_mana"];
 
         if ($charParams->life > $charParams->maxLife) {
             $charParams->life = $charParams->maxLife;
@@ -54,6 +57,7 @@ class CalculateServiceImpl implements CalculatingService
         if ($npc instanceof AbstractPeopleNpc) {
             $this->calcArmor($npc);
         }
+        $this->clearCoolDown($npc);
     }
 
     /**
@@ -62,12 +66,15 @@ class CalculateServiceImpl implements CalculatingService
      */
     public function calcDamage(AbstractNpc $npc)
     {
+        $formuls = Container::instance("formuls");
         $baseSkills = $npc->getBaseParams();
         $warParams = $npc->getWarParams();
         $baseMinDamage = $baseSkills->strenge;
         $baseMaxDamage = $baseSkills->strenge * 2;
         $warParams->minDamage = $baseMinDamage;
         $warParams->maxDamage = $baseMaxDamage;
+        $warParams->magicBoost = $formuls["params"]["magic_boost"];
+        $warParams->attack = $formuls["params"]["attack"];
         //TODO: если у него может быть экипировка
         if ($npc instanceof AbstractPeopleNpc) {
             /** @var $equip \MB\Glor\Params\Equip */
@@ -188,24 +195,62 @@ class CalculateServiceImpl implements CalculatingService
      */
     public function regeneration(AbstractNpc $npc)
     {
+        $formuls = Container::instance("formuls");
         $charParams = $npc->getCharParams();
         $baseParams = $npc->getBaseParams();
+        $talants = $npc->getTalants();
         $baseRegenTime = \MB\Container::get("app_config")->getRegenTime();
         $regenLifeTime = time() - ($baseRegenTime - $baseParams->regeneration * 10);
         $regenManaTime = time() - ($baseRegenTime - $baseParams->meditation * 10);
         $regenLifeTime = $regenLifeTime < 10 ? 10 : $regenLifeTime;
         $regenManaTime = $regenManaTime < 10 ? 10 : $regenManaTime;
-        if ($charParams->lastMeditationTime < $regenLifeTime and $charParams->life < $charParams->maxLife) {
-            $charParams->life += ceil($baseParams->regeneration / 2);
+        /*if ($charParams->lastMeditationTime < $regenLifeTime and $charParams->life < $charParams->maxLife) {
+            if($charParams->life + ceil($baseParams->regeneration / 2) <= $charParams->maxLife){
+                $charParams->life += ceil($baseParams->regeneration / 2);
+            } else {
+                $charParams->life = $charParams->maxLife;
+            }
             $charParams->lastRegenerationTime = time();
         }
 
         if ($charParams->lastMeditationTime < $regenManaTime and $charParams->energy < $charParams->maxEnergy) {
             $charParams->energy += ceil($baseParams->meditation / 2);
             $charParams->lastMeditationTime = time();
+        }*/
+        if($charParams->life < $charParams->maxLife){
+            $lifePerSecond = $formuls["params"]["life_per_second"];
+            $k = time() - $charParams->lastRegenerationTime;
+            if($k < 1) $k = 1;
+            if($charParams->life + $lifePerSecond*$k > $charParams->maxLife){
+                $charParams->life = $charParams->maxLife;
+            } else {
+                $charParams->life += $lifePerSecond*$k;
+            }
         }
-
+        if($charParams->energy < $charParams->maxEnergy){
+            $manaPerSecond = $formuls["params"]["mana_per_second"];
+            $k = time() - $charParams->lastMeditationTime;
+            if($k < 1) $k = 1;
+            $manaPerSecond *= $k;
+            if($charParams->energy + $manaPerSecond > $charParams->maxEnergy){
+                $charParams->energy = $charParams->maxEnergy;
+            } else {
+                $charParams->energy += $manaPerSecond;
+            }
+        }
+        $charParams->lastRegenerationTime = time();
+        $charParams->lastMeditationTime = time();
         $npc->setCharParams($charParams);
+    }
+
+    public function clearCoolDown(AbstractNpc $npc){
+        $cooldown = $npc->getCooldown();
+        foreach($cooldown as $id => $time){
+            if($cooldown->getTime($id) < 1){
+                unset($cooldown->{$id});
+            }
+        }
+        $npc->setCooldown($cooldown);
     }
 
     /**

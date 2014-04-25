@@ -1,0 +1,13 @@
+earthquake:
+  name: "Землетрясение"
+  cooldown: 180
+  mp: "{%f:skills.earthquake_mp%}"
+  type: "aoe"
+
+earthembrace:
+  name: "Объятия земли"
+  info: "Усиливает броню цели, а если таковой нет, то самого заклинателя на {%formula:skills.stoneskin%}. Время действия эффекта {%formula:baffs.standart_baff_time%} минут"
+  type: "point"
+  cooldown: 5
+  mp: 50
+  class: "c-skills c-icon__earthembrace"

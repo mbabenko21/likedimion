@@ -1,0 +1,17 @@
+main:
+  url: "/?do=main&{%f:helper.random%}"
+
+move_char:
+  url: "/?do=main&go={%replace:locId%}"
+
+use_aoe_talant:
+  url: "/?do=use.talant&talantId={%replace:talantId%}"
+
+use_point_talant:
+  url: "/?do=use.talant&talantId={%replace:talantId%}&to={%replace:to%}"
+
+char_info:
+  url: "/?do=char:info&uid={%replace:uid%}"
+
+attack_npc:
+  url: "/?do=attack:npc&to={%replace:to%}"

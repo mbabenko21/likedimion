@@ -8,7 +8,9 @@ namespace MB\Glor\Char;
  */
 
 use MB\Glor\AbstractAutoIncrementObject;
+use MB\Glor\CharBattleOptions;
 use MB\Glor\Location\Location;
+use MB\Glor\Locations\LocationDB;
 use MB\Glor\Npc\AbstractPeopleNpc;
 use MB\Helper\DateHelper;
 use MB\Glor\Params\CharStatistic;
@@ -43,11 +45,6 @@ abstract class AbstractChar extends AbstractPeopleNpc
     const LightWarrior = "lw";
     const LightHealer = "lh";
     const LightSniper = "ls";
-    /**
-     * @var string
-     * @Column(type="string", length=32)
-     */
-    protected $name;
     /**
      * @var string
      * @Column(name="race", type="string")
@@ -85,6 +82,18 @@ abstract class AbstractChar extends AbstractPeopleNpc
      * @Column(name="created", type="datetime")
      */
     protected $created;
+    /**
+     * @var LocationDB
+     * @OneToOne(targetEntity="MB\Glor\Locations\LocationDB")
+     * @JoinColumn(name="loc_id", referencedColumnName="loc_id", onDelete="SET NULL")
+     */
+    protected $location;
+    /**
+     * @var CharBattleOptions
+     * @OneToOne(targetEntity="MB\Glor\CharBattleOptions")
+     * @JoinColumn(name="battle_options_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $battleOptions;
 
     public function __construct()
     {
@@ -92,21 +101,6 @@ abstract class AbstractChar extends AbstractPeopleNpc
         $this->setCreated(DateHelper::createDate());
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
 
     /**
      * @return string
@@ -250,5 +244,37 @@ abstract class AbstractChar extends AbstractPeopleNpc
     public function getStatus()
     {
         return floor($this->getLevel() / 10);
+    }
+
+    /**
+     * @return \MB\Glor\Locations\LocationDB
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param \MB\Glor\Locations\LocationDB $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return \MB\Glor\CharBattleOptions
+     */
+    public function getBattleOptions()
+    {
+        return $this->battleOptions;
+    }
+
+    /**
+     * @param \MB\Glor\CharBattleOptions $battleOptions
+     */
+    public function setBattleOptions($battleOptions)
+    {
+        $this->battleOptions = $battleOptions;
     }
 }

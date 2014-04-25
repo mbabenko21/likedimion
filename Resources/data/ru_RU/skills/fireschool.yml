@@ -1,0 +1,32 @@
+firearrow:
+  name: Огненная стрела
+  info: Запускает в противника огненную стрелу, которая наносит {%formula:skills.firearrow%} урона от магии огня.
+  type: point
+  cooldown: 15
+  mp: "{%formula:skills.firearrow_mp%}"
+
+fireball:
+  name: Огненный шар
+  info: Запускает огненный шар в противника, попадая он взрывается и наносит {%formula:skills.fireball%} урона трем ближайшим целям. Основной урон приходится на цель, ближайшим целям наносится 50% урона.
+  type: mini_aoe
+  cooldown: 30
+  mp: "{%formula:skills.fireball_mp%}"
+
+firecolumn:
+  name: Огненный смерч
+  info: Обрушивает огненный смерч на всех противников вокруг читающего и наносит {%formula:skills.firecolumn%} урона каждому.
+  type: aoe
+  cooldown: 180
+  mp: "{%formula:skills.firecolumn_mp%}"
+
+fireway:
+  name: "Путь огня"
+  info: "Усиливает силу атаки и силу магии цели, а если таковой нет, то заклинателя на {%f:skills.fireway_boost%}ед. Время действия эффекта {%f:skills.fireway_time%} мин."
+  type: "point"
+  mp: 50
+  cooldown: 5
+
+fireschool:
+  name: Школа огня
+  info: Увеличивает урон заклинаний школы магии огня на {%formula:skills.fireschool%}%.
+  type: passive

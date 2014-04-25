@@ -15,10 +15,14 @@ if($authService->hasLogged()){
         $user = $authService->getCurrentUser();
         $char = $user->getChar();
         $char->getCharParams()->timeLastAction = time();
-
+        \MB\Container::register("formuls", require ROOT_DIR."/Resources/config/formuls.php");
         if(empty($_GET["do"])){
             $_GET["do"] = "main";
         }
+        /** @var $eventListener \MB\Events\Listener */
+        $eventListener = \MB\Container::get("event_listeners");
+        $eventListener->configure();
+
         /** @var $calculateService \MB\Common\CalculatingService */
         $calculateService = \MB\Container::get("calculate_service");
         $calculateService->calculate($char);

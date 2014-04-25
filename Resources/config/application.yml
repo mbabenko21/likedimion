@@ -7,6 +7,7 @@ locale: "ru_RU"
 regen_time: 60
 base_speed: 3
 items_per_page: 10
+journal_life_time: 20
 map:
   entity: "MB\Glor"
   smarty:

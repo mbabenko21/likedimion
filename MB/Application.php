@@ -9,12 +9,14 @@ namespace MB;
  */
 use MB\Loader\Providers\ItemYamlLoader;
 use MB\Loader\Providers\ExpTableYamlLoader;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class Application
 {
      public static function run()
      {
          $container = new \Symfony\Component\DependencyInjection\ContainerBuilder();
+         $container->set("dispatcher", new EventDispatcher());
          $app = new \MB\Loader\Providers\YamlLoader(ROOT_DIR . "/Resources/config/application.yml");
          $appConfig = new \MB\Configurations\ApplicationConfiguration($app);
          \MB\Container::register("app_config", $appConfig);
@@ -33,4 +35,5 @@ class Application
          set_error_handler(array('MB\Core\Kernel\Errors', 'handler'), E_ERROR);
          set_exception_handler(array('MB\Core\Kernel\Errors', 'exceptions'));
      }
+
 }

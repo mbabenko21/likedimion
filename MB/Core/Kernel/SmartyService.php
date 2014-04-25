@@ -1,10 +1,12 @@
 <?php
 namespace MB\Core\Kernel;
+
 /**
  * @author Maks Babenko <mbabenko21@gmail.com>
  * @package
  *         Time: 22:08
  */
+use MB\Exception\RouteException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use MB\Helper\DateHelper;
 
@@ -66,7 +68,8 @@ class SmartyService
         }
     }
 
-    public static function format_date($datetime){
+    public static function format_date($datetime)
+    {
         return DateHelper::format($datetime, "%#d %b %Y");
     }
 
@@ -82,11 +85,25 @@ class SmartyService
         return $crypter->decrypt($word);
     }
 
+    public static function route($params)
+    {
+        $routeId = $params["id"];
+        /** @var $routerService \MB\Common\RouterService */
+        $routerService = \MB\Container::get("routes_service");
+        try {
+            $route = $routerService->getUrl($routeId)->getUrl($params);
+        } catch(RouteException $e){
+            $route = "main";
+        }
+        return $route;
+    }
+
 
     protected static function addFunctions(\SmartyBC $smarty)
     {
         $smarty->register_function("lang", array('MB\Core\Kernel\SmartyService', "lang"));
         $smarty->register_function("randomize", array('MB\Core\Kernel\SmartyService', "random"));
+        $smarty->register_function("route", array('MB\Core\Kernel\SmartyService', "route"));
         $smarty->register_modifier("length", array('MB\Core\Kernel\SmartyService', "length"));
         $smarty->register_modifier("strftime", array('MB\Core\Kernel\SmartyService', 'format_date'));
         $smarty->register_modifier("encrypt", array('MB\Core\Kernel\SmartyService', 'encrypt'));

@@ -11,6 +11,7 @@ use MB\Exception\ItemLoaderException;
 /** @var $authService \MB\Common\AuthService */
 $authService = Container::get("auth_service");
 $char = $authService->getCurrentUser()->getChar();
+$formuls = Container::instance("formuls");
 try{
     $weapon = $char->getEquip()->getRightHand()->getAttackName();
 } catch (ItemLoaderException $e){
@@ -20,6 +21,7 @@ $data = array(
     "params" => $char->getWarParams(),
     "char" => $char,
     "weapon" => $weapon,
+    "formuls" => $formuls,
     "title" => \MB\Lang::line("menu", "parameters")
 );
 

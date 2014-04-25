@@ -5,6 +5,7 @@
 <head>
     <title>{$app.app_name}: {$app.version}</title>
     <link rel="stylesheet" media="all" type="text/css" href="http://{$smarty.server.SERVER_NAME}/css/standart.css"/>
+    <script src="/js/less-1.7.0.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div class='f'>

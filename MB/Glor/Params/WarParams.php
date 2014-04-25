@@ -11,6 +11,8 @@ namespace MB\Glor\Params;
  * @property int $hit
  * @property int $minDamage
  * @property int $maxDamage
+ * @property int $attack
+ * @property int $magicBoost
  * @property int $damageType
  * @property int $armorFromCrushing
  * @property int $armorFromCutting

@@ -4,7 +4,8 @@
 <div class="skills">
     <div class="skills_content">
         <div class="params">
-            <span>{lang sect="params" line="damage"} {{lang sect="params" line={$view.weapon}}|lower}</span> <strong>{$view.params->minDamage}-{$view.params->maxDamage}</strong>
+            <span>{lang sect="params" line="attack"}</span>: <strong>{$view.params->attack}</strong><br/>
+            <span>{lang sect="params" line="magic_boost"}</span>: <strong>{$view.params->magicBoost}</strong>
             <br/>
             <span>{lang sect="params" line="hit"}</span>: <strong>{$view.params->hit}%</strong><br/>
             <span>{lang sect="params" line="armor_from"}</span>
@@ -24,7 +25,9 @@
             <span>{lang sect="skills" line="bias"}</span>: <strong>{$view.params->bias}%</strong><br/>
             <span>{lang sect="skills" line="parring"}</span>: <strong>{$view.params->parring}%</strong><br/>
             <span>{lang sect="skills" line="magic_bias"}</span>: <strong>{$view.params->magic_bias}%</strong><br/>
-            <span>{lang sect="skills" line="magic_parring"}</span>: <strong>{$view.params->magic_parring}%</strong><br/>
+            <span>{lang sect="skills" line="magic_parring"}</span>: <strong>{$view.params->magic_parring}%</strong>
+            <br/> --- <br/>
+            <span>{lang sect="skills" line="life_per_second"}</span> <strong>{$view.formuls.params.life_per_second}</strong> HP/{lang sect="helper" line="sec"}, <strong>{$view.formuls.params.mana_per_second}</strong> MP/{lang sect="helper" line="sec"}
         </div>
     </div>
 </div>

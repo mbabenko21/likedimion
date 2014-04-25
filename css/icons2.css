@@ -1,0 +1,66 @@
+.a-skills_64 {background: url("/images/skills_1.png") 0 0 no-repeat;}
+.c-skills {background: url("/images/icons__1.jpg") 0 0 no-repeat;}
+.a-skills_32 {background: url("/images/skills_1_32.png") 0 0 no-repeat;}
+.a-skills_16 {background: url("/images/skills_1_16.png") 0 0 no-repeat;}
+
+.a-skills_64, .c-skills, .a-skills_32, .a-skills_16 {
+    position: absolute;
+    display: block;
+    height: 64px;
+    width: 64px;
+    border-radius: 10px;
+}
+
+.a-skills_32 {width: 32px; height: 32px; border-radius: 5px;}
+.a-skills_16 {width: 16px; height: 16px; border-radius: 2.5px;}
+
+.a-skills_64 span,  .c-skills span, .a-skills_32 span{
+    position: absolute;
+    font-weight: bold;
+    margin-left: 45px;
+    font-size: 26px;
+}
+
+.a-skills_32 span {
+    margin-left: 20px;
+    font-size: 20px;
+}
+    #light-span{
+        text-decoration: none;
+        color: whitesmoke;
+    }
+    #dark-span {
+        text-decoration: none;
+        color: #2d2d2d;
+    }
+ /* стандартные иконки талантов */
+.a-icon__firearrow_64      {background-position: -395px -132px;}
+.a-icon__fireball_64       {background-position: -528px -397px;}
+.a-icon__firecolumn_64     {background-position: -528px -131px;}
+.a-icon__coldcolumn_64     {background-position: -528px -462px;}
+.a-icon__coldspikes_64     {background-position: 0px -264px;}
+.a-icon__fireschool_64     {background-position: -131px -397px;}
+.a-icon__earthschool_64    {background-position: -199px -397px;}
+.a-icon__coldschool_64     {background-position: -131px -330px;}
+.a-icon__coldblow_64       {background-position: -528px -198px;}
+.a-icon__earthsplit_64     {background-position: -264px -131px}
+.a-icon__earthhorns_64     {background-position: 0px -528px}
+.a-icon__earthquake_64     {background-position: -132px -594px}
+.a-icon__holyschool_64     {background-position: -528px 0px}
+.a-icon__fireway_64        {background-position: -330px -330px}
+.c-icon__earthembrace_64     {background-position: -178px -193px}
+
+.a-icon__firearrow_32      {background-position: -197.5px -68px;}
+.a-icon__fireball_32       {background-position: -264px -199px;}
+.a-icon__firecolumn_32     {background-position: -264px -67.5px;}
+.a-icon__coldcolumn_32     {background-position: -264px -231px;}
+.a-icon__coldspikes_32     {background-position: 0px -66px;}
+.a-icon__fireschool_32     {background-position: -65.5px -199.5px;}
+.a-icon__earthschool_32    {background-position: -99.5px -198.5px;}
+.a-icon__coldschool_32     {background-position: -65.5px -165px;}
+.a-icon__coldblow_32       {background-position: -264px -99px;}
+.a-icon__earthsplit_32     {background-position: -264px -131px}
+.a-icon__earthhorns_32     {background-position: 0px -264px}
+.a-icon__earthquake_32     {background-position: -66px -297px}
+.a-icon__holyschool_32     {background-position: -264px 0px}
+.a-icon__fireway_32        {background-position: -165px -166px}

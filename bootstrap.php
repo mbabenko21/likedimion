@@ -9,8 +9,8 @@ if (!defined("ROOT_DIR")) {
     define("ROOT_DIR", dirname(__FILE__));
 }
 
-require_once ROOT_DIR . "/vendor/doctrine/lib/Doctrine/ORM/Tools/Setup.php";
-\Doctrine\ORM\Tools\Setup::registerAutoloadDirectory(dirname(__FILE__) . "/vendor/doctrine/lib");
+$loader = require ROOT_DIR . '/vendor/autoload.php';
+$loader->add('DoctrineMigrations', __DIR__."/Resources/migrations/");
 
 require_once ROOT_DIR . "/MB/Autoloader.php";
 

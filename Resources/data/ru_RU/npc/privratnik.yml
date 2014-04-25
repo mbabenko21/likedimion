@@ -2,6 +2,7 @@ name: "Привратник Уин"
 type: "man"
 dialog: "privratnik"
 info: 'Старец, который много повидал в этой жизни'
+icon: 'a__npc npc_uin'
 char_params: []
 equip: []
 base_skills:

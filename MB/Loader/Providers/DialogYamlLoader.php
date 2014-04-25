@@ -9,6 +9,12 @@ namespace MB\Loader\Providers;
  */
 class DialogYamlLoader extends YamlLoader
 {
+    public function __construct($dialogId = ""){
+        if($dialogId != ""){
+            $this->load($dialogId);
+        }
+    }
+
     public function load($dialog)
     {
         $dialog = $this->getBaseFolder() ."/dialogs/". $dialog . ".yml";

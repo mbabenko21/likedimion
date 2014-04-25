@@ -21,6 +21,8 @@ $charService->commit();*/
 $data = array(
     "title" => \MB\Lang::line("menu", "char"),
     "char" => $char,
-    "status" => $char->getStatus()
+    "status" => $char->getStatus(),
+    "attack" => 0,
+    "include_menu" => true
 );
 MB\View::make("game/char/about.tpl", $data);

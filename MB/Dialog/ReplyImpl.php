@@ -26,7 +26,7 @@ class ReplyImpl implements ReplyInterface
     {
         $text = $this->text;
         $text = preg_replace_callback("/{php}(.*){\/php}/", array($this, 'replacePHP'), $text);
-        $text = preg_replace_callback("/{%(.*)%}/", array($this, 'replaceCharField'), $text);
+        $text = preg_replace_callback("/{%([^(%})])%}/", array($this, 'replaceCharField'), $text);
         $text = str_replace('\n', '<br/>', $text);
         $this->text = $text;
         return $this->text;

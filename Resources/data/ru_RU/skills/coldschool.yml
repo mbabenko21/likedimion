@@ -1,0 +1,25 @@
+coldblow:
+  name: "Ледяное прикосновение"
+  info: "Наносит {%formula:skills.coldblow_damage%} урона магией льда и обездвиживает противника на {%formula:skills.coldblow_time%} сек."
+  type: "point"
+  mp: "{%formula:skills.coldblow_mp%}"
+  cooldown: 20
+
+coldcolumn:
+  name: "Ледяной шторм"
+  info: "Наносит {%formula:skills.coldcolumn_damage%} урона магией льда двум ближайшим противникам и обездвиживает их на {%formula:skills.coldcolumn_time%} сек."
+  type: "mini_aoe"
+  mp: "{%formula:skills.coldcolumn_mp%}"
+  cooldown: 60
+
+coldspikes:
+  name: "Ледяные шипы"
+  info: " Наносит {%f:skills.coldspikes_damage%} урона всем противникам вокруг и останавливает их на {%f:skills.coldspikes_time%} сек."
+  type: "aoe"
+  cooldown: 180
+  mp: "{%f:skills.coldspikes_mp%}"
+
+coldschool:
+  name: "Школа магии льда"
+  info: "Повышает эффективность заклинаний магии льда на {%formula:skills.coldschool_damage%}%, а также увеличивает время действия обморожения на {%formula:skills.coldschool_time%} сек."
+  type: "passive"

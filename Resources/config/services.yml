@@ -1,6 +1,13 @@
 #Depedency Injection pattern
 #Создание сервисов
 #Cервис для работы с аккаунтом
+
+constants_loader:
+  instance: MB\Loader\Providers\ConstantsYamlLoader
+
+dialog_loader:
+  instance: MB\Loader\Providers\DialogYamlLoader
+
 user_service:
   instance: MB\Services\UserServiceImpl
   arguments: [@entityManager]
@@ -51,6 +58,12 @@ location_loader:
 npc_loader:
   instance: MB\Loader\Providers\NpcYamlLoader
 
+skills_loader:
+  instance: MB\Loader\Providers\SkillsYamlLoader
+
+routes_loader:
+  instance: MB\Loader\Providers\RoutesYamlLoader
+
 #Дампер yml
 yaml_saver:
   instance: MB\Saver\YamlSaver
@@ -84,3 +97,20 @@ move_service:
   instance: MB\Services\MoveServiceImpl
   autocall:
     setLocationService: [@locations_service]
+    setCharService: [@char_service]
+    setEventDispatcher: [@dispatcher]
+
+skills_service:
+  instance: MB\Services\SkillsServiceImpl
+  autocall:
+      setSkillsLoader: [@skills_loader]
+
+event_listeners:
+  instance: MB\Events\Listener
+  autocall:
+    setDispatcher: [@dispatcher]
+
+routes_service:
+  instance: MB\Services\RouterServiceImpl
+  autocall:
+    setLoader: [@routes_loader]

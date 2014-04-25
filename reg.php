@@ -107,6 +107,8 @@ if (empty($_POST["reg_button"])) {
                 $baseParams->intelligence = 1;
                 $baseParams->life = 1;
                 $baseParams->energy = 1;
+                $baseParams->regeneration = 10;
+                $baseParams->meditation = 10;
                 $char->setBaseParams($baseParams);
                 $charParams = new \MB\Glor\Params\CharParams();
                 $charParams->location = "ld_begin";

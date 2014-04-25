@@ -4,6 +4,6 @@
   ),
   'vars' => 
   array (
-    'base_title' => 'Glor-2',
+    'base_title' => 'Likedimion',
   ),
 ); ?>

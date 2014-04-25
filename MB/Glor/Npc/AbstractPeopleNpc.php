@@ -7,6 +7,8 @@ namespace MB\Glor\Npc;
  * Time: 10:20
  * To change this template use File | Settings | File Templates.
  */
+use MB\Glor\Params\Journal;
+use MB\Glor\Params\TalantsSkills;
 use MB\I\ExportableInterface;
 use MB\Glor\Params\Equip;
 use MB\Glor\Params\WarSkills;
@@ -20,6 +22,7 @@ class AbstractPeopleNpc extends AbstractNpc
      */
     protected $proffSkills = array();
 
+
     /**
      * @var array
      * @Column(name="bank", type="array")
@@ -31,6 +34,11 @@ class AbstractPeopleNpc extends AbstractNpc
      * @Column(name="equip", type="array")
      */
     protected $equip = array();
+    /**
+     * @var array
+     * @Column(name="journal", type="array")
+     */
+    protected $journal = array();
     /**
      * @return \MB\Glor\Params\ProffSkills
      */
@@ -78,5 +86,22 @@ class AbstractPeopleNpc extends AbstractNpc
     {
         $this->equip = $equip->export();
     }
+
+    /**
+     * @return Journal
+     */
+    public function getJournal()
+    {
+        return new Journal($this->journal);
+    }
+
+    /**
+     * @param \MB\I\ExportableInterface $journal
+     */
+    public function setJournal(ExportableInterface $journal)
+    {
+        $this->journal = $journal->export();
+    }
+
 
 }

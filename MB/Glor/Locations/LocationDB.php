@@ -215,4 +215,8 @@ class LocationDB implements LocationInterface
         $location = new Location($loader->get());
         return $location->getStaticNpcList();
     }
+
+    public function __toString(){
+        return $this->getName();
+    }
 }
